@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlN0cmVuZ3RoICYgV2VsbG5lc3MiLCAic2hvcnRfbmFtZSI6ICJTJlciLCAic3RhcnRfdXJsIjogIi4vIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGNkY4RkEiLCAidGhlbWVfY29sb3IiOiAiIzM0Qzk4QiIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJkZXNjcmlwdGlvbiI6ICJZb3VyIHBlcnNvbmFsIHdlbGxuZXNzIGNvbXBhbmlvbiIsICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDE5MiAxOTInJTNFJTNDcmVjdCB3aWR0aD0nMTkyJyBoZWlnaHQ9JzE5Micgcng9JzQwJyBmaWxsPSclMjMzNEM5OEInLyUzRSUzQ3RleHQgeT0nMTMwJyB4PSc5NicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1zaXplPScxMTAnJTNFJUYwJTlGJTkyJUFBJTNDL3RleHQlM0UlM0Mvc3ZnJTNFIiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn0sIHsic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMiclM0UlM0NyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyByeD0nMTAwJyBmaWxsPSclMjMzNEM5OEInLyUzRSUzQ3RleHQgeT0nMzUwJyB4PScyNTYnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMzAwJyUzRSVGMCU5RiU5MiVBQSUzQy90ZXh0JTNFJTNDL3N2ZyUzRSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="S&W" />
+  <meta name="theme-color" content="#34C98B" />
+  <meta name="description" content="Strength & Wellness — Fitness, Nutrition & PCOS Clinical Reference" />
+  <title>Strength &amp; Wellness</title>
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%2334C98B'/%3E%3Ctext x='90' y='118' font-size='86' text-anchor='middle' font-family='Georgia,serif' font-style='italic' fill='white'%3ESW%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2334C98B'/%3E%3Ctext x='16' y='23' font-size='16' text-anchor='middle' font-family='Georgia,serif' font-style='italic' fill='white'%3ESW%3C/text%3E%3C/svg%3E" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script>
+    // Suppress Babel in-browser transformer production warning
+    const _warn = console.warn.bind(console);
+    console.warn = (...args) => {
+      if (args[0] && typeof args[0] === 'string' && args[0].includes('in-browser Babel transformer')) return;
+      _warn(...args);
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+  <style>
+    #loading {
+      position: fixed; inset: 0; background: #F6F8FA;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: -apple-system, sans-serif; z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+    #loading .logo { font-size: 56px; margin-bottom: 16px; animation: pulse 1.5s infinite; }
+    #loading .text { font-size: 14px; font-weight: 600; color: #34C98B; letter-spacing: 2px; text-transform: uppercase; }
+    #loading .sub { font-size: 11px; color: #9CA3AF; margin-top: 6px; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; background: #F6F8FA; -webkit-overflow-scrolling: touch; overscroll-behavior: none; }
+    #root { height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .mobile-tabbar { padding-bottom: env(safe-area-inset-bottom, 16px) !important; }
+    .page-content { padding-top: env(safe-area-inset-top, 0px); }
+    body { -webkit-text-size-adjust: 100%; }
+  </style>
+</head>
+<body>
+
+  <div id="loading">
+    <div class="logo">💪</div>
+    <div class="text">Strength &amp; Wellness</div>
+    <div class="sub">Loading your app…</div>
+  </div>
+  <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swCode = `
+          const CACHE = 'sw-v2';
+          self.addEventListener('install', e => { self.skipWaiting(); });
+          self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+          self.addEventListener('fetch', e => {
+            if (e.request.mode === 'navigate') {
+              e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+            }
+          });
+        `;
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+      });
+    }
+    const manifest = { name: "Strength & Wellness", short_name: "S&W", start_url: "./", display: "standalone", background_color: "#F6F8FA", theme_color: "#34C98B", orientation: "portrait" };
+    const mBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+    const mLink = document.createElement('link'); mLink.rel = 'manifest'; mLink.href = URL.createObjectURL(mBlob);
+    document.head.appendChild(mLink);
+  </script>
+
+  <script>
+    // Suppress Babel in-browser transpiler production warning (cosmetic only)
+    const _origWarn = console.warn.bind(console);
+    console.warn = (...args) => {
+      if (args[0] && typeof args[0] === 'string' && args[0].includes('in-browser Babel')) return;
+      _origWarn(...args);
+    };
+  </script>
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect, useCallback, useRef } = React;
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   WELLNESS APP v2 — Chunk 1: Shell + Design System + Program Page
+   Theme: Apple Health × Calm × Arc Browser — Light, bright, breathable
+   Fonts: Plus Jakarta Sans (body) + Fraunces (display — organic warmth)
+═══════════════════════════════════════════════════════════════════ */
+
+// ─── GLOBAL STYLES ──────────────────────────────────────────────────
+const GlobalStyles = () => (
+  <style>{`
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FFFFFF;
+      --bg: #F6F8FA;
+      --bg2: #EEF2F7;
+      --surface: rgba(255,255,255,0.85);
+      --surface-solid: #FFFFFF;
+      --border: rgba(0,0,0,0.07);
+      --border-strong: rgba(0,0,0,0.12);
+
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --text-inverse: #FFFFFF;
+
+      /* Wellness palette — fresh, airy, energetic */
+      --mint:       #34C98B;
+      --mint-light: #D1FAE5;
+      --mint-dark:  #059669;
+
+      --sky:        #38BDF8;
+      --sky-light:  #E0F2FE;
+      --sky-dark:   #0284C7;
+
+      --peach:      #FB7185;
+      --peach-light:#FFE4E6;
+      --peach-dark: #E11D48;
+
+      --lavender:   #A78BFA;
+      --lav-light:  #EDE9FE;
+      --lav-dark:   #7C3AED;
+
+      --amber:      #FBBF24;
+      --amber-light:#FEF3C7;
+      --amber-dark: #D97706;
+
+      --coral:      #F97316;
+      --coral-light:#FFEDD5;
+      --coral-dark: #C2410C;
+
+      --accent: var(--mint);
+      --accent-light: var(--mint-light);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-xl: 0 24px 64px rgba(0,0,0,0.12);
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+
+      --nav-h: 60px;
+      --tab-h: 80px;
+    }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    @keyframes shimmer {
+      from { background-position: -200% center; }
+      to   { background-position: 200% center; }
+    }
+
+    .anim-up   { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .anim-in   { animation: fadeIn 0.3s ease both; }
+    .anim-scale{ animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .anim-down { animation: slideDown 0.3s ease both; }
+
+    /* Staggered children */
+    .stagger > * { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .stagger > *:nth-child(1)  { animation-delay: 0.05s; }
+    .stagger > *:nth-child(2)  { animation-delay: 0.10s; }
+    .stagger > *:nth-child(3)  { animation-delay: 0.15s; }
+    .stagger > *:nth-child(4)  { animation-delay: 0.20s; }
+    .stagger > *:nth-child(5)  { animation-delay: 0.25s; }
+    .stagger > *:nth-child(6)  { animation-delay: 0.30s; }
+
+    /* Tap / hover lift */
+    .lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .lift:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+
+    /* Glass card */
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+    }
+
+    /* Input reset */
+    input, select, textarea, button { font-family: var(--font-body); }
+    input[type=number]::-webkit-inner-spin-button { opacity: 0.4; }
+
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      .desktop-sidebar { display: flex !important; }
+      .mobile-tabbar   { display: none !important; }
+      .page-content    { margin-left: 240px; padding-bottom: 40px !important; }
+    }
+    @media (max-width: 767px) {
+      .desktop-sidebar { display: none !important; }
+      .mobile-tabbar   { display: flex !important; }
+      .page-content    { padding-bottom: calc(var(--tab-h) + 16px) !important; }
+    }
+  `}</style>
+);
+
+// ─── DESIGN TOKENS ──────────────────────────────────────────────────
+const C = {
+  mint: "#34C98B", mintLight: "#D1FAE5", mintDark: "#059669",
+  sky: "#38BDF8", skyLight: "#E0F2FE", skyDark: "#0284C7",
+  peach: "#FB7185", peachLight: "#FFE4E6",
+  lavender: "#A78BFA", lavLight: "#EDE9FE",
+  amber: "#FBBF24", amberLight: "#FEF3C7", amberDark: "#D97706",
+  coral: "#F97316", coralLight: "#FFEDD5",
+  text: "#111827", textSub: "#4B5563", textMuted: "#9CA3AF",
+  bg: "#F6F8FA", bg2: "#EEF2F7",
+  white: "#FFFFFF", border: "rgba(0,0,0,0.07)",
+};
+
+// ─── SHARED COMPONENTS ──────────────────────────────────────────────
+
+const Chip = ({ children, color = C.mint, bg }) => (
+  <span style={{
+    display: "inline-flex", alignItems: "center", padding: "3px 10px",
+    borderRadius: 20, fontSize: 11, fontWeight: 600, letterSpacing: 0.3,
+    background: bg || color + "18", color,
+  }}>{children}</span>
+);
+
+const Badge = ({ children, color = C.mint }) => (
+  <span style={{
+    display: "inline-flex", alignItems: "center", justifyContent: "center",
+    minWidth: 20, height: 20, padding: "0 6px", borderRadius: 10,
+    fontSize: 10, fontWeight: 700, background: color, color: "#fff",
+  }}>{children}</span>
+);
+
+const Card = ({ children, style, className = "", onClick }) => (
+  <div
+    onClick={onClick}
+    className={`glass ${className}`}
+    style={{
+      borderRadius: 20, padding: 20, marginBottom: 14,
+      boxShadow: "var(--shadow-sm)", cursor: onClick ? "pointer" : "default",
+      ...style,
+    }}
+  >{children}</div>
+);
+
+const SectionLabel = ({ children, color = C.mint }) => (
+  <div style={{
+    fontSize: 10, fontWeight: 700, letterSpacing: 2.5,
+    textTransform: "uppercase", color, marginBottom: 6,
+  }}>{children}</div>
+);
+
+const Display = ({ children, style }) => (
+  <div style={{
+    fontFamily: "var(--font-display)", fontSize: "clamp(22px, 4vw, 30px)",
+    fontWeight: 700, color: C.text, lineHeight: 1.2, ...style,
+  }}>{children}</div>
+);
+
+const Sub = ({ children, style }) => (
+  <p style={{ fontSize: 13, color: C.textSub, lineHeight: 1.65, ...style }}>{children}</p>
+);
+
+const Divider = ({ style }) => (
+  <div style={{ height: 1, background: C.border, margin: "16px 0", ...style }} />
+);
+
+const Empty = ({ icon, title, text }) => (
+  <div style={{ textAlign: "center", padding: "48px 24px" }}>
+    <div style={{ fontSize: 48, marginBottom: 12, opacity: 0.35 }}>{icon}</div>
+    {title && <div style={{ fontFamily: "var(--font-display)", fontSize: 17, fontWeight: 600, marginBottom: 6, color: C.text }}>{title}</div>}
+    <Sub style={{ maxWidth: 260, margin: "0 auto" }}>{text}</Sub>
+  </div>
+);
+
+const Btn = ({ children, onClick, variant = "primary", size = "md", style, disabled, color }) => {
+  const sizes = {
+    xs: { padding: "5px 12px", fontSize: 11, borderRadius: 8 },
+    sm: { padding: "7px 14px", fontSize: 12, borderRadius: 10 },
+    md: { padding: "10px 20px", fontSize: 13.5, borderRadius: 12 },
+    lg: { padding: "13px 28px", fontSize: 15, borderRadius: 14 },
+  };
+  const col = color || C.mint;
+  const variants = {
+    primary:   { background: col, color: "#fff", border: "none", boxShadow: `0 4px 14px ${col}44` },
+    secondary: { background: C.bg2, color: C.text, border: `1.5px solid ${C.border}`, boxShadow: "none" },
+    ghost:     { background: "transparent", color: col, border: `1.5px solid ${col}`, boxShadow: "none" },
+    soft:      { background: col + "15", color: col, border: "none", boxShadow: "none" },
+    danger:    { background: "#FEE2E2", color: "#EF4444", border: "none", boxShadow: "none" },
+  };
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: 6,
+        fontWeight: 600, cursor: disabled ? "not-allowed" : "pointer",
+        transition: "all 0.18s ease",
+        opacity: disabled ? 0.5 : 1,
+        ...sizes[size], ...variants[variant], ...style,
+      }}
+    >{children}</button>
+  );
+};
+
+const Input = ({ label, hint, style, containerStyle, ...p }) => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 5, ...containerStyle }}>
+    {label && <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: C.textSub }}>{label}</label>}
+    <input style={{
+      padding: "11px 14px", border: `1.5px solid ${C.border}`, borderRadius: 12,
+      fontSize: 13.5, color: C.text, background: C.white,
+      outline: "none", width: "100%",
+      transition: "border-color 0.15s",
+      ...style,
+    }} onFocus={e => e.target.style.borderColor = C.mint}
+       onBlur={e => e.target.style.borderColor = C.border}
+    {...p} />
+    {hint && <span style={{ fontSize: 11, color: C.textMuted }}>{hint}</span>}
+  </div>
+);
+
+const Select = ({ label, children, style, ...p }) => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+    {label && <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: C.textSub }}>{label}</label>}
+    <select style={{
+      padding: "11px 14px", border: `1.5px solid ${C.border}`, borderRadius: 12,
+      fontSize: 13.5, color: C.text, background: C.white,
+      outline: "none", width: "100%", ...style,
+    }} {...p}>{children}</select>
+  </div>
+);
+
+// ─── RING CHART ──────────────────────────────────────────────────────
+function Ring({ value, max, color = C.mint, size = 96, stroke = 9, label, sublabel, bg = "#EEF2F7" }) {
+  const r = (size - stroke) / 2;
+  const circ = 2 * Math.PI * r;
+  const pct = Math.min(value / (max || 1), 1);
+  const offset = circ * (1 - pct);
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+      <div style={{ position: "relative", width: size, height: size }}>
+        <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={bg} strokeWidth={stroke} />
+          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
+            strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
+            style={{ transition: "stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1)" }} />
+        </svg>
+        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontFamily: "var(--font-display)", fontSize: size > 90 ? 20 : 15, fontWeight: 700, color: C.text, lineHeight: 1 }}>{value}</span>
+          {sublabel && <span style={{ fontSize: 9, color: C.textMuted, marginTop: 2, fontWeight: 500 }}>{sublabel}</span>}
+        </div>
+      </div>
+      {label && <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: C.textMuted }}>{label}</span>}
+    </div>
+  );
+}
+
+// ─── PROGRESS BAR ────────────────────────────────────────────────────
+function ProgressBar({ value, max = 100, color = C.mint, height = 6, animated = true }) {
+  const pct = Math.min((value / (max || 1)) * 100, 100);
+  return (
+    <div style={{ background: C.bg2, borderRadius: 20, height, overflow: "hidden" }}>
+      <div style={{
+        width: pct + "%", height: "100%", borderRadius: 20,
+        background: `linear-gradient(90deg, ${color}cc, ${color})`,
+        transition: animated ? "width 0.7s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
+      }} />
+    </div>
+  );
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────────
+function Toast({ msg }) {
+  return msg ? (
+    <div className="anim-scale" style={{
+      position: "fixed", bottom: 96, left: "50%", transform: "translateX(-50%)",
+      background: "rgba(17,24,39,0.92)", backdropFilter: "blur(12px)",
+      color: "#fff", padding: "10px 20px",
+      borderRadius: 30, fontSize: 13, fontWeight: 500,
+      zIndex: 9999, pointerEvents: "none",
+      whiteSpace: "nowrap", boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+      border: "1px solid rgba(255,255,255,0.1)",
+    }}>{msg}</div>
+  ) : null;
+}
+
+// ─── PERSISTENT STORE ────────────────────────────────────────────────
+function useStore(key, init) {
+  const [val, setVal] = useState(() => {
+    try {
+      const s = localStorage.getItem("sw2_" + key);
+      return s ? JSON.parse(s) : init;
+    } catch { return init; }
+  });
+  const save = useCallback(v => {
+    const next = typeof v === "function" ? v(val) : v;
+    setVal(next);
+    try { localStorage.setItem("sw2_" + key, JSON.stringify(next)); } catch {}
+  }, [key, val]);
+  return [val, save];
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────────
+const todayStr = () => new Date().toISOString().slice(0, 10);
+const fmt = d => {
+  if (!d) return "";
+  const dt = new Date(d + "T12:00:00");
+  return dt.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+};
+
+// ─── DATA ────────────────────────────────────────────────────────────
+const EXERCISES = {
+  A: [
+    { id: "squat",    name: "Goblet Squat → Back Squat", sets: "3", reps: "10–12", muscles: ["Quads","Glutes","Core"],   tags: ["pcos"],    note: "Start goblet; progress to barbell week 3–4" },
+    { id: "rdl",      name: "Romanian Deadlift",          sets: "3", reps: "10",    muscles: ["Hamstrings","Glutes"],     tags: ["pcos"],    note: "Hip-hinge pattern; feel the stretch at the bottom" },
+    { id: "chest",    name: "Chest Press Machine",        sets: "3", reps: "10–12", muscles: ["Chest","Shoulders"],       tags: [],          note: "Slow 3-sec lowering (eccentric)" },
+    { id: "lat",      name: "Lat Pulldown Machine",       sets: "3", reps: "10–12", muscles: ["Lats","Biceps"],           tags: ["posture"], note: "Pull to collarbone; squeeze lats at bottom" },
+    { id: "facepull", name: "Face Pulls",                 sets: "3", reps: "15",    muscles: ["Rear Delts","Mid Traps"],  tags: ["posture"], note: "★ Posture priority — elbows high, pull to forehead" },
+    { id: "plank",    name: "Plank / Dead Bug",           sets: "3", reps: "30–45s",muscles: ["Core","Hip Flexors"],     tags: ["posture"], note: "Core stability foundation for all lifts" },
+  ],
+  B: [
+    { id: "hipthrust", name: "Hip Thrust",                sets: "3", reps: "12–15", muscles: ["Glutes","Hamstrings"],    tags: ["pcos"],    note: "★ PCOS priority — greatest glute activator" },
+    { id: "lunge",     name: "Dumbbell Reverse Lunge",    sets: "3", reps: "10/leg",muscles: ["Quads","Glutes"],          tags: [],          note: "Knee-friendly; step back far enough" },
+    { id: "row",       name: "Seated Cable Row",          sets: "3", reps: "12",    muscles: ["Rhomboids","Mid Traps"],   tags: ["posture"], note: "★ Posture — squeeze shoulder blades at end" },
+    { id: "shoulder",  name: "Dumbbell Shoulder Press",   sets: "3", reps: "10–12", muscles: ["Shoulders","Triceps"],    tags: [],          note: "Seated first; ribs down, no shrugging" },
+    { id: "curl",      name: "Incline Dumbbell Curl",     sets: "2", reps: "12",    muscles: ["Biceps"],                 tags: [],          note: "Full stretch at bottom; slow 3-sec eccentric" },
+    { id: "bridge",    name: "Glute Bridge + Abduction",  sets: "3", reps: "12–15", muscles: ["Glute Med","Hips"],        tags: ["pcos","posture"], note: "Band above knees; push knees out throughout" },
+  ],
+};
+
+const EXERCISE_DETAIL = {
+  squat: {
+    img: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=700&q=80",
+    steps: ["Stand feet shoulder-width, toes turned out 15–30°. Hold dumbbell at chest or barbell on upper traps.", "Take a deep breath into your belly and brace your core hard before starting.", "Push knees out over toes and sit hips back and down — don't just drop.", "Lower until thighs hit parallel or below. Chest tall, lower back neutral.", "Drive through your full foot to stand, squeezing glutes at the top.", "Add a barbell once goblet feels natural — typically weeks 3–4."],
+    benefits: [{ icon: "🔥", t: "Highest Calorie Burn", d: "Recruits the largest muscle groups — unmatched metabolic demand." }, { icon: "🩺", t: "PCOS Insulin Sensitivity", d: "Heavy lower-body work is most effective for improving insulin resistance." }, { icon: "🦵", t: "Complete Leg Development", d: "Hits quads, glutes, hamstrings, and adductors in one move." }],
+    tips: [{ t: "Goblet First", d: "Teaches chest-up and knees-out before adding spinal load." }, { t: "Heel Elevation", d: "Place plates under heels if they lift — improves depth." }, { t: "Knees Out", d: "Actively push knees out every single rep for depth and glute activation." }],
+    videos: [{ title: "Goblet Squat Form Guide", ch: "Jeff Nippard", url: "https://www.youtube.com/watch?v=MxsFDhcyFyE", thumb: "https://img.youtube.com/vi/MxsFDhcyFyE/hqdefault.jpg" }],
+  },
+  rdl: {
+    img: "https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=700&q=80",
+    steps: ["Stand holding dumbbells at hip height, feet hip-width, slight knee bend.", "Push your hips backward — imagine touching the wall behind you.", "Let weights travel close to your legs. Back stays flat.", "Lower until you feel a strong hamstring stretch — typically mid-shin.", "Drive hips forward to stand, squeezing glutes at the top."],
+    benefits: [{ icon: "🦵", t: "Posterior Chain", d: "Builds hamstrings and glutes more than almost any other exercise." }, { icon: "🩺", t: "PCOS Metabolic Impact", d: "Second only to squats and hip thrusts for insulin-sensitizing effect." }],
+    tips: [{ t: "Bar Path", d: "Weights stay within 2–3 inches of legs the entire way down." }, { t: "Feel the Stretch", d: "If you don't feel it in the backs of your legs, push hips further back." }],
+    videos: [{ title: "Romanian Deadlift Tutorial", ch: "Jeff Nippard", url: "https://www.youtube.com/watch?v=hCDzSR6bW10", thumb: "https://img.youtube.com/vi/hCDzSR6bW10/hqdefault.jpg" }],
+  },
+  chest: {
+    img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80",
+    steps: ["Adjust seat so handles align with mid-chest.", "Sit tall, back against pad, feet flat. Brace core.", "Press forward until arms nearly extended — avoid locking elbows.", "Lower slowly over 3 seconds. Eccentric builds muscle.", "Allow a slight chest stretch. Don't crash the stack between reps."],
+    benefits: [{ icon: "💪", t: "Safe Chest Loading", d: "Machine removes balance demands — great for rebuilding strength." }, { icon: "🛡️", t: "Shoulder Health", d: "Balanced pressing strength stabilizes the shoulder joint." }],
+    tips: [{ t: "3-Second Negative", d: "Slow the lowering phase for faster strength gains." }, { t: "Seat Height", d: "Mid-chest level. Too high = shoulder dominant, too low = strain." }],
+    videos: [{ title: "Chest Press — Perfect Form", ch: "Renaissance Periodization", url: "https://www.youtube.com/watch?v=xUm0BiZCWlQ", thumb: "https://img.youtube.com/vi/xUm0BiZCWlQ/hqdefault.jpg" }],
+  },
+  lat: {
+    img: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=700&q=80",
+    steps: ["Sit with thigh pad locked. Grip bar slightly wider than shoulder-width.", "Lean back 10–15° and elongate your spine.", "Pull by driving elbows down toward hip pockets.", "Pull until bar reaches upper chest. Squeeze shoulder blades.", "Return slowly over 2–3 seconds, letting lats stretch fully."],
+    benefits: [{ icon: "🏗️", t: "Back Width", d: "Builds lats — the wide back that improves posture and frame." }, { icon: "🧍", t: "Posture Correction", d: "Pulls shoulders back and down, countering forward rounding." }],
+    tips: [{ t: "Elbows to Hip Pockets", d: "Automatically engages lats and stops biceps from taking over." }],
+    videos: [{ title: "Lat Pulldown Technique", ch: "Jeff Nippard", url: "https://www.youtube.com/watch?v=CAwf7n6Luuc", thumb: "https://img.youtube.com/vi/CAwf7n6Luuc/hqdefault.jpg" }],
+  },
+  facepull: {
+    img: "https://images.unsplash.com/photo-1516481157630-05bc0aeb8b19?w=700&q=80",
+    steps: ["Set cable or band to forehead height. Rope attachment.", "Grip with thumbs pointing toward you. Step back until tension.", "Pull toward your face with elbows high — at or above shoulder height.", "Finish with hands at ear level, palms forward.", "Squeeze rear delts and mid traps. Hold 1 second, return slowly."],
+    benefits: [{ icon: "🧍", t: "#1 Posture Exercise", d: "Trains rear deltoids and mid traps — exactly countering forward hump." }, { icon: "🛡️", t: "Rotator Cuff Health", d: "Strengthens external rotators, reducing pressing injury risk." }],
+    tips: [{ t: "Elbows MUST Stay High", d: "Low elbows = a row. High elbows = rear delt activation." }, { t: "Light Weight", d: "Corrective work. Feel every contraction for 15 clean reps." }],
+    videos: [{ title: "Face Pulls — Definitive Guide", ch: "Athlean-X", url: "https://www.youtube.com/watch?v=rep-qVOkqgk", thumb: "https://img.youtube.com/vi/rep-qVOkqgk/hqdefault.jpg" }],
+  },
+  plank: {
+    img: "https://images.unsplash.com/photo-1571019613576-2b22c76fd955?w=700&q=80",
+    steps: ["Forearms on ground, elbows under shoulders. Or hands for push-up position.", "Body forms a straight line from head to heels. No hips sagging.", "Brace your core like you're about to take a punch.", "Breathe steadily. Don't hold your breath.", "For Dead Bug: lower opposite arm/leg simultaneously while keeping back flat."],
+    benefits: [{ icon: "🏗️", t: "Core Foundation", d: "Protects your spine during every weighted exercise." }, { icon: "🧍", t: "Posture Support", d: "Strong core allows you to maintain tall posture under load." }],
+    tips: [{ t: "Quality Over Time", d: "A 20-second perfect plank beats a 60-second sagging one." }],
+    videos: [{ title: "Perfect Plank Tutorial", ch: "Athlean-X", url: "https://www.youtube.com/watch?v=ASdvN_XEl_c", thumb: "https://img.youtube.com/vi/ASdvN_XEl_c/hqdefault.jpg" }],
+  },
+  hipthrust: {
+    img: "https://images.unsplash.com/photo-1570655652364-2e0a67455ac6?w=700&q=80",
+    steps: ["Sit with upper back against a bench, barbell or dumbbell across hips.", "Feet shoulder-width, about a foot from your glutes.", "Drive hips up by squeezing glutes — body forms a straight line.", "Hold 1 second at the top. Squeeze as hard as possible.", "Lower slowly. Don't let hips touch the floor between reps."],
+    benefits: [{ icon: "🍑", t: "#1 Glute Activator", d: "Produces the highest glute activation of any exercise — bar none." }, { icon: "🩺", t: "PCOS Priority", d: "Large glute muscle mass improves insulin sensitivity significantly." }],
+    tips: [{ t: "Chin Tuck", d: "Look at your hips, not the ceiling. Prevents lower back overextension." }],
+    videos: [{ title: "Hip Thrust Form Guide", ch: "Bret Contreras", url: "https://www.youtube.com/watch?v=LM8XHLYJoYs", thumb: "https://img.youtube.com/vi/LM8XHLYJoYs/hqdefault.jpg" }],
+  },
+  lunge: { img: "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=700&q=80", steps: ["Stand holding dumbbells. Step one foot back 2–3 feet.", "Lower your back knee toward the floor — don't let it crash.", "Front shin stays vertical. Front knee stays over front foot.", "Push through your front heel to return to standing.", "Alternate legs each rep, or complete all reps on one side."], benefits: [{ icon: "🦵", t: "Unilateral Strength", d: "Fixes left-right imbalances that bilateral squats can mask." }], tips: [{ t: "Step Back Far Enough", d: "A short step puts too much pressure on the front knee." }], videos: [] },
+  row: { img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=700&q=80", steps: ["Sit upright, feet on platform, slight knee bend.", "Grip the handle with neutral (palms facing) grip.", "Pull toward your lower abdomen, driving elbows behind you.", "Squeeze shoulder blades together at the end of the pull.", "Return slowly — full arm extension before the next rep."], benefits: [{ icon: "🧍", t: "Posture Builder", d: "Directly strengthens the muscles that pull shoulders back." }], tips: [{ t: "Squeeze at End", d: "The shoulder blade squeeze is the whole point of this exercise." }], videos: [] },
+  shoulder: { img: "https://images.unsplash.com/photo-1581009137042-c552e485697a?w=700&q=80", steps: ["Sit with dumbbells at shoulder height, palms forward.", "Brace core and keep ribs down — no arching the lower back.", "Press directly overhead until arms nearly extended.", "Lower slowly back to shoulder height.", "No shrugging — keep shoulders packed down throughout."], benefits: [{ icon: "💪", t: "Shoulder Strength", d: "Builds the deltoids for a balanced, strong upper body." }], tips: [{ t: "Ribs Down", d: "If ribs flare, your lower back is compensating. Lighten the load." }], videos: [] },
+  curl: { img: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&q=80", steps: ["Lie back on an incline bench (45°). Arms hang straight.", "Curl the weights slowly, leading with your pinkies.", "Pause at the top, squeezing biceps hard.", "Lower over 3 full seconds — this eccentric is key.", "Arms return to full extension at the bottom."], benefits: [{ icon: "💪", t: "Full Bicep Stretch", d: "The incline position creates a longer range of motion than standing curls." }], tips: [{ t: "3-Second Down", d: "The slow lowering phase is where bicep growth happens." }], videos: [] },
+  bridge: { img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&q=80", steps: ["Lie on your back, knees bent, feet flat, band above knees.", "Press knees out against the band throughout the entire movement.", "Drive hips up by squeezing glutes. Hold 1 second.", "Lower slowly. Don't let knees cave at any point.", "Keep constant tension on the band — push out even at the bottom."], benefits: [{ icon: "🍑", t: "Glute Med Activation", d: "The abduction targets the hard-to-reach glute medius." }, { icon: "🩺", t: "PCOS + Posture", d: "Combined glute and hip work for maximum lower body benefit." }], tips: [{ t: "Knees OUT Always", d: "Caving knees defeats the purpose. Push out the entire time." }], videos: [] },
+};
+
+const GOAL_ICONS = { strength: "💪", weight: "⚖️", habit: "📅", measurement: "📏", nutrition: "🥗" };
+
+// ─── EXERCISE DETAIL PANEL (SLIDE-OVER) ─────────────────────────────
+function ExercisePanel({ exId, onClose }) {
+  const ex = Object.values(EXERCISES).flat().find(e => e.id === exId);
+  const d = EXERCISE_DETAIL[exId];
+  if (!ex || !d) return null;
+
+  const tagColor = { pcos: C.peach, posture: C.lavender };
+
+  return (
+    <div className="anim-in" onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)",
+      backdropFilter: "blur(6px)", zIndex: 800, overflowY: "auto",
+    }}>
+      <div className="anim-scale" onClick={e => e.stopPropagation()} style={{
+        maxWidth: 560, margin: "24px auto", borderRadius: 28,
+        background: C.white, overflow: "hidden",
+        boxShadow: "0 32px 80px rgba(0,0,0,0.18)",
+      }}>
+        {/* Hero image */}
+        <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
+          <img src={d.img} alt={ex.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
+          <button onClick={onClose} style={{
+            position: "absolute", top: 14, right: 14, width: 34, height: 34,
+            borderRadius: "50%", background: "rgba(0,0,0,0.4)", color: "#fff",
+            border: "none", cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
+          }}>✕</button>
+          <div style={{ position: "absolute", bottom: 16, left: 20 }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 20, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{ex.name}</div>
+            <div style={{ display: "flex", gap: 6 }}>
+              {ex.tags.map(t => <Chip key={t} color={tagColor[t] || C.mint} bg={(tagColor[t] || C.mint) + "33"}>{t.toUpperCase()}</Chip>)}
+              <Chip color="#fff" bg="rgba(255,255,255,0.2)">{ex.sets} sets × {ex.reps}</Chip>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ padding: "22px 24px" }}>
+          {/* Muscles */}
+          <div style={{ display: "flex", gap: 6, marginBottom: 20, flexWrap: "wrap" }}>
+            {ex.muscles.map(m => <Chip key={m} color={C.mint}>{m}</Chip>)}
+          </div>
+
+          {/* Note */}
+          <div style={{ background: C.amberLight, borderRadius: 12, padding: "10px 14px", marginBottom: 20, fontSize: 13, color: C.amberDark, fontWeight: 500 }}>
+            💡 {ex.note}
+          </div>
+
+          {/* Steps */}
+          <div style={{ marginBottom: 20 }}>
+            <SectionLabel color={C.mint}>How To Perform</SectionLabel>
+            <ol style={{ paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+              {d.steps.map((s, i) => (
+                <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <div style={{ width: 24, height: 24, borderRadius: "50%", background: C.mintLight, color: C.mintDark, fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
+                  <p style={{ fontSize: 13, color: C.textSub, lineHeight: 1.65 }}>{s}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Benefits */}
+          <div style={{ marginBottom: 20 }}>
+            <SectionLabel color={C.sky}>Why It Matters</SectionLabel>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {d.benefits.map((b, i) => (
+                <div key={i} style={{ display: "flex", gap: 12, background: C.bg, borderRadius: 12, padding: "10px 14px" }}>
+                  <span style={{ fontSize: 20 }}>{b.icon}</span>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{b.t}</div>
+                    <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.5 }}>{b.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tips */}
+          <div style={{ marginBottom: 20 }}>
+            <SectionLabel color={C.coral}>Pro Tips</SectionLabel>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {d.tips.map((tip, i) => (
+                <div key={i} style={{ borderLeft: `3px solid ${C.coral}`, paddingLeft: 12 }}>
+                  <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{tip.t}</div>
+                  <div style={{ fontSize: 12, color: C.textSub }}>{tip.d}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Videos */}
+          {d.videos?.length > 0 && (
+            <div>
+              <SectionLabel color={C.peach}>Video Tutorials</SectionLabel>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {d.videos.map((v, i) => (
+                  <a key={i} href={v.url} target="_blank" rel="noreferrer" style={{ display: "flex", gap: 12, textDecoration: "none", background: C.bg, borderRadius: 12, padding: 10, alignItems: "center" }}>
+                    <img src={v.thumb} alt={v.title} style={{ width: 80, height: 54, objectFit: "cover", borderRadius: 8, flexShrink: 0 }} />
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: 13, color: C.text, marginBottom: 2 }}>{v.title}</div>
+                      <Chip color={C.peach}>{v.ch}</Chip>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── DAY CARD (Program) ──────────────────────────────────────────────
+function DayCard({ day, onSelectEx }) {
+  const [open, setOpen] = useState(true);
+  const exes = EXERCISES[day];
+  const dayColors = { A: { accent: C.mint, light: C.mintLight, dark: C.mintDark }, B: { accent: C.coral, light: C.coralLight, dark: C.coralDark } };
+  const dc = dayColors[day];
+
+  return (
+    <Card style={{ marginBottom: 16, overflow: "hidden", padding: 0 }}>
+      {/* Header */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        style={{
+          width: "100%", background: `linear-gradient(135deg, ${dc.accent}, ${dc.dark})`,
+          border: "none", cursor: "pointer", padding: "16px 20px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ width: 42, height: 42, borderRadius: 14, background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
+            {day === "A" ? "🦵" : "🍑"}
+          </div>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 17, fontWeight: 700, color: "#fff" }}>
+              Day {day} — {day === "A" ? "Lower Body Drive" : "Hip & Pull Focus"}
+            </div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", marginTop: 2 }}>
+              {exes.length} exercises · {day === "A" ? "Quads, Glutes, Back" : "Glutes, Hamstrings, Shoulders"}
+            </div>
+          </div>
+        </div>
+        <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 18, transition: "transform 0.3s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>⌄</span>
+      </button>
+
+      {/* Exercise List */}
+      {open && (
+        <div className="stagger" style={{ padding: "8px 0" }}>
+          {exes.map((ex, i) => (
+            <button
+              key={ex.id}
+              onClick={() => onSelectEx(ex.id)}
+              style={{
+                width: "100%", background: "none", border: "none", cursor: "pointer",
+                padding: "12px 20px", display: "flex", alignItems: "center", gap: 14,
+                borderBottom: i < exes.length - 1 ? `1px solid ${C.border}` : "none",
+                transition: "background 0.15s",
+                textAlign: "left",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = dc.light + "66"}
+              onMouseLeave={e => e.currentTarget.style.background = "none"}
+            >
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: dc.light, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <span style={{ fontSize: 16 }}>
+                  {ex.id === "squat" ? "🏋️" : ex.id === "rdl" ? "🔄" : ex.id === "chest" ? "🤝" : ex.id === "lat" ? "🌊" : ex.id === "facepull" ? "🎯" : ex.id === "plank" ? "🪨" : ex.id === "hipthrust" ? "🍑" : ex.id === "lunge" ? "🚶" : ex.id === "row" ? "🚣" : ex.id === "shoulder" ? "💪" : ex.id === "curl" ? "🦾" : "🫀"}
+                </span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600, fontSize: 13.5, color: C.text, marginBottom: 3 }}>{ex.name}</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                  <span style={{ fontSize: 11, color: C.textMuted }}>{ex.sets} sets × {ex.reps}</span>
+                  {ex.tags.map(t => (
+                    <Chip key={t} color={t === "pcos" ? C.peach : C.lavender} bg={(t === "pcos" ? C.peachLight : C.lavLight)}>{t}</Chip>
+                  ))}
+                </div>
+              </div>
+              <div style={{ color: C.textMuted, fontSize: 14, flexShrink: 0 }}>›</div>
+            </button>
+          ))}
+        </div>
+      )}
+    </Card>
+  );
+}
+
+// ─── PAGE: PROGRAM ───────────────────────────────────────────────────
+function ProgramPage() {
+  const [panelId, setPanelId] = useState(null);
+
+  const pillars = [
+    { icon: "🩺", label: "PCOS-First", color: C.peach, bg: C.peachLight, desc: "Every workout is designed around insulin sensitivity, cortisol management, and hormonal health." },
+    { icon: "🧍", label: "Posture", color: C.lavender, bg: C.lavLight, desc: "Dedicated corrective work every session to address forward rounding and upper back tension." },
+    { icon: "📈", label: "Progressive", color: C.mint, bg: C.mintLight, desc: "Structured phases that build habit, then strength, then density. You grow with the program." },
+    { icon: "⚡", label: "Time-Smart", color: C.amber, bg: C.amberLight, desc: "45–55 minutes per session. No fluff. Everything earns its place." },
+  ];
+
+  const phases = [
+    { phase: "Phase 1", weeks: "Wk 1–4", freq: "2× / week", color: C.sky, desc: "Learn movement patterns. Light loads. Prioritize showing up over lifting heavy." },
+    { phase: "Phase 2", weeks: "Wk 5–10", freq: "2–3× / week", color: C.mint, desc: "Add a 3rd session when ready. Begin adding load. Progress every 1–2 weeks." },
+    { phase: "Phase 3", weeks: "Wk 11+", freq: "3× / week", color: C.coral, desc: "Habit formed. Track weights. Consider supersets to increase density." },
+  ];
+
+  return (
+    <div className="stagger">
+      {/* Hero */}
+      <div style={{
+        borderRadius: 24, marginBottom: 16, overflow: "hidden",
+        background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0c4a6e 100%)",
+        padding: "36px 28px", position: "relative",
+      }}>
+        <div style={{ position: "absolute", top: -40, right: -40, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle, rgba(52,201,139,0.15), transparent 70%)" }} />
+        <div style={{ position: "absolute", bottom: -60, left: 60, width: 180, height: 180, borderRadius: "50%", background: "radial-gradient(circle, rgba(56,189,248,0.1), transparent 70%)" }} />
+        <SectionLabel color={C.mint}>Strength & Wellness</SectionLabel>
+        <div style={{ fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 36px)", fontWeight: 700, color: "#fff", lineHeight: 1.2, marginBottom: 10 }}>
+          Your Personal<br /><em style={{ color: C.mint }}>Training Program</em>
+        </div>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", maxWidth: 380, lineHeight: 1.65, marginBottom: 20 }}>
+          A science-backed 2-day strength split tailored for PCOS management, posture correction, and sustainable fat loss.
+        </p>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <Chip color={C.mint} bg="rgba(52,201,139,0.2)">2 Days / Week</Chip>
+          <Chip color={C.sky} bg="rgba(56,189,248,0.2)">45–55 Min Sessions</Chip>
+          <Chip color={C.peach} bg="rgba(251,113,133,0.2)">PCOS Optimized</Chip>
+        </div>
+      </div>
+
+      {/* Pillars */}
+      <SectionLabel color={C.textMuted}>Program Pillars</SectionLabel>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10, marginBottom: 20 }}>
+        {pillars.map((p, i) => (
+          <div key={i} style={{ background: p.bg, borderRadius: 18, padding: 16 }}>
+            <span style={{ fontSize: 26, display: "block", marginBottom: 8 }}>{p.icon}</span>
+            <div style={{ fontWeight: 700, fontSize: 13, color: p.color, marginBottom: 4 }}>{p.label}</div>
+            <div style={{ fontSize: 11.5, color: C.textSub, lineHeight: 1.55 }}>{p.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Days */}
+      <SectionLabel color={C.textMuted}>Training Days</SectionLabel>
+      <p style={{ fontSize: 12.5, color: C.textMuted, marginBottom: 14 }}>Tap any exercise to see full instructions, benefits, and video tutorials.</p>
+      <DayCard day="A" onSelectEx={setPanelId} />
+      <DayCard day="B" onSelectEx={setPanelId} />
+
+      {/* Phases */}
+      <SectionLabel color={C.textMuted} style={{ marginTop: 8 }}>Program Phases</SectionLabel>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 16 }}>
+        {phases.map((p, i) => (
+          <div key={i} style={{ background: C.white, borderRadius: 18, padding: 16, boxShadow: "var(--shadow-sm)", borderTop: `3px solid ${p.color}` }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: p.color, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{p.phase}</div>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 2 }}>{p.weeks}</div>
+            <div style={{ fontSize: 11, color: p.color, fontWeight: 600, marginBottom: 8 }}>{p.freq}</div>
+            <div style={{ fontSize: 11, color: C.textSub, lineHeight: 1.5 }}>{p.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Overload Rule */}
+      <div style={{ background: C.amberLight, borderRadius: 18, padding: 18, borderLeft: `4px solid ${C.amber}` }}>
+        <div style={{ fontWeight: 700, fontSize: 13.5, marginBottom: 6 }}>📏 Progressive Overload Rule</div>
+        <p style={{ fontSize: 13, color: C.textSub, lineHeight: 1.65 }}>
+          When you complete <strong>all sets at the top of the rep range</strong> with solid form — add <strong>5 lbs on lower body</strong> and <strong>2.5 lbs on upper body</strong>.
+        </p>
+      </div>
+
+      {panelId && <ExercisePanel exId={panelId} onClose={() => setPanelId(null)} />}
+    </div>
+  );
+}
+
+// ─── PLACEHOLDER PAGES (Chunks 2 & 3) ───────────────────────────────
+// ─── TRACKER PAGE ────────────────────────────────────────────────────
+function TrackerPage({ showToast }) {
+  const [workouts, setWorkouts] = useStore("workouts", []);
+  const [measurements, setMeasurements] = useStore("measurements", []);
+  const [day, setDay] = useState("A");
+  const [logDate, setLogDate] = useState(todayStr());
+  const [duration, setDuration] = useState("50");
+  const [notes, setNotes] = useState("");
+  const [setSets, setSetSets] = useState({});
+  const [activityLevel, setActivityLevel] = useState("1.55");
+  const [goalType, setGoalType] = useState("-300");
+  const [showMeasForm, setShowMeasForm] = useState(false);
+  const [showTDEE, setShowTDEE] = useState(false);
+  const [mForm, setMForm] = useState({ weight: "", height: "", age: "", bf: "", waist: "", hips: "", bust: "", thigh: "" });
+  const [activeSection, setActiveSection] = useState("log"); // "log" | "history" | "body"
+
+  const latest = measurements[measurements.length - 1];
+  const prev = measurements[measurements.length - 2];
+  const exes = EXERCISES[day];
+  const sorted = [...workouts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const initSets = useCallback(() => {
+    const s = {};
+    exes.forEach((ex, i) => { s[i] = [{ reps: "", weight: "" }, { reps: "", weight: "" }, { reps: "", weight: "" }]; });
+    setSetSets(s);
+  }, [day]);
+  useEffect(() => { initSets(); }, [initSets]);
+
+  const updateSet = (ei, si, field, val) => setSetSets(p => ({ ...p, [ei]: p[ei].map((s, j) => j === si ? { ...s, [field]: val } : s) }));
+  const addSet = ei => setSetSets(p => ({ ...p, [ei]: [...(p[ei] || []), { reps: "", weight: "" }] }));
+  const removeSet = (ei, si) => setSetSets(p => ({ ...p, [ei]: p[ei].filter((_, j) => j !== si) }));
+
+  const calcTDEE = () => {
+    if (!latest?.weight || !latest?.age) return null;
+    let hCm = 162;
+    if (latest.height) {
+      const m = latest.height.toString().match(/(\d+)['\s]*(\d*)/);
+      if (m) hCm = parseInt(m[1]) * 30.48 + (parseInt(m[2]) || 0) * 2.54;
+    }
+    const kg = latest.weight * 0.453592;
+    const bmr = 10 * kg + 6.25 * hCm - 5 * latest.age - 161;
+    const tdeeVal = Math.round(bmr * parseFloat(activityLevel));
+    const target = tdeeVal + parseInt(goalType);
+    const protein = Math.round(latest.weight * 0.85);
+    const fat = Math.round(target * 0.27 / 9);
+    const carbs = Math.round((target - protein * 4 - fat * 9) / 4);
+    return { bmr: Math.round(bmr), tdee: tdeeVal, target, protein, carbs, fat };
+  };
+  const tdee = calcTDEE();
+
+  const saveMeasurements = () => {
+    const entry = { date: todayStr(), ...Object.fromEntries(Object.entries(mForm).map(([k, v]) => [k, v ? parseFloat(v) || v : null])) };
+    setMeasurements(p => [...p, entry]);
+    try { localStorage.setItem("sw2_calorieTargets", JSON.stringify(tdee || {})); } catch {}
+    setShowMeasForm(false);
+    showToast("✅ Measurements saved!");
+  };
+
+  const saveWorkout = () => {
+    const exerciseData = exes.map((ex, ei) => ({
+      name: ex.name,
+      sets: (setSets[ei] || []).filter(s => s.reps).map(s => ({ reps: parseInt(s.reps), weight: parseFloat(s.weight) || 0 }))
+    })).filter(e => e.sets.length > 0);
+    if (!exerciseData.length) { showToast("⚠️ Log at least one set first"); return; }
+    setWorkouts(p => [...p, { id: Date.now(), date: logDate, day, duration: parseInt(duration) || 50, notes, exercises: exerciseData }]);
+    setNotes(""); initSets();
+    showToast("✅ Workout saved!");
+    setActiveSection("history");
+  };
+
+  const deleteWorkout = id => { setWorkouts(p => p.filter(w => w.id !== id)); showToast("Removed"); };
+
+  const measFields = [
+    { k: "weight", l: "Weight (lbs)", step: "0.1" },
+    { k: "height", l: "Height (e.g. 5'5\")", type: "text" },
+    { k: "age",    l: "Age", step: "1" },
+    { k: "bf",     l: "Body Fat %", step: "0.1" },
+    { k: "waist",  l: "Waist (in)", step: "0.1" },
+    { k: "hips",   l: "Hips (in)", step: "0.1" },
+    { k: "bust",   l: "Bust (in)", step: "0.1" },
+    { k: "thigh",  l: "Thigh (in)", step: "0.1" },
+  ];
+
+  const statFields = [
+    { k: "weight", l: "Weight", u: "lbs" }, { k: "waist", l: "Waist", u: "in" },
+    { k: "hips",   l: "Hips",   u: "in" }, { k: "bust",  l: "Bust",  u: "in" },
+    { k: "thigh",  l: "Thigh",  u: "in" }, { k: "bf",    l: "Body Fat", u: "%" },
+  ];
+
+  const dayColors = {
+    A: { accent: C.mint, light: C.mintLight, dark: C.mintDark, label: "Lower Body Drive" },
+    B: { accent: C.coral, light: C.coralLight, dark: C.coralDark, label: "Hip & Pull Focus" },
+  };
+
+  // ── Section Switcher ──
+  const sections = [
+    { id: "log",     label: "Log Workout", icon: "🏋️" },
+    { id: "body",    label: "Body Profile", icon: "📏" },
+    { id: "history", label: "History", icon: "📋" },
+  ];
+
+  return (
+    <div>
+      {/* Section tabs */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 20, background: C.bg2, borderRadius: 16, padding: 5 }}>
+        {sections.map(s => (
+          <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
+            flex: 1, padding: "9px 8px", borderRadius: 12, border: "none", cursor: "pointer",
+            background: activeSection === s.id ? C.white : "transparent",
+            color: activeSection === s.id ? C.text : C.textMuted,
+            fontWeight: activeSection === s.id ? 700 : 500, fontSize: 12,
+            boxShadow: activeSection === s.id ? "var(--shadow-sm)" : "none",
+            transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+          }}>
+            <span>{s.icon}</span><span>{s.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* ── LOG WORKOUT ── */}
+      {activeSection === "log" && (
+        <div className="stagger">
+          {/* Day + Date + Duration */}
+          <Card>
+            <SectionLabel color={C.coral}>Session Setup</SectionLabel>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+              <Input label="Date" type="date" value={logDate} onChange={e => setLogDate(e.target.value)} />
+              <Input label="Duration (min)" type="number" value={duration} onChange={e => setDuration(e.target.value)} placeholder="50" />
+            </div>
+            {/* Day selector */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              {["A", "B"].map(d => (
+                <button key={d} onClick={() => setDay(d)} style={{
+                  padding: "14px 16px", borderRadius: 14, border: `2px solid ${day === d ? dayColors[d].accent : C.border}`,
+                  background: day === d ? dayColors[d].light : C.white,
+                  cursor: "pointer", textAlign: "left", transition: "all 0.2s",
+                }}>
+                  <div style={{ fontWeight: 700, fontSize: 13.5, color: day === d ? dayColors[d].dark : C.text, marginBottom: 2 }}>
+                    Day {d}
+                  </div>
+                  <div style={{ fontSize: 11, color: C.textMuted }}>{dayColors[d].label}</div>
+                </button>
+              ))}
+            </div>
+          </Card>
+
+          {/* Exercise logger */}
+          {exes.map((ex, ei) => {
+            const dc = dayColors[day];
+            return (
+              <Card key={ex.id} style={{ padding: 0, overflow: "hidden" }}>
+                {/* Exercise header */}
+                <div style={{ padding: "14px 18px", background: `linear-gradient(135deg, ${dc.light}, ${dc.light}88)`, borderBottom: `1px solid ${dc.accent}22` }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ fontWeight: 700, fontSize: 13.5, color: C.text, flex: 1 }}>{ex.name}</div>
+                    <div style={{ display: "flex", gap: 5 }}>
+                      {ex.tags.includes("pcos") && <Chip color={C.peach} bg={C.peachLight}>PCOS</Chip>}
+                      {ex.tags.includes("posture") && <Chip color={C.lavender} bg={C.lavLight}>Posture</Chip>}
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 11, color: C.textMuted, marginTop: 3 }}>Target: {ex.sets} sets × {ex.reps}</div>
+                </div>
+
+                <div style={{ padding: "14px 18px" }}>
+                  {/* Column headers */}
+                  <div style={{ display: "grid", gridTemplateColumns: "32px 1fr 1fr 28px", gap: 8, marginBottom: 8, fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: C.textMuted }}>
+                    <span>#</span><span>Reps</span><span>Weight (lbs)</span><span />
+                  </div>
+
+                  {/* Sets */}
+                  {(setSets[ei] || []).map((s, si) => (
+                    <div key={si} style={{ display: "grid", gridTemplateColumns: "32px 1fr 1fr 28px", gap: 8, marginBottom: 8, alignItems: "center" }}>
+                      <div style={{
+                        width: 32, height: 32, borderRadius: 10,
+                        background: s.reps ? dc.accent : C.bg2,
+                        color: s.reps ? "#fff" : C.textMuted,
+                        fontSize: 11, fontWeight: 700,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        transition: "all 0.2s",
+                      }}>S{si + 1}</div>
+                      <input
+                        type="number" placeholder="12" value={s.reps} min="1" max="100"
+                        onChange={e => updateSet(ei, si, "reps", e.target.value)}
+                        style={{ padding: "9px 12px", border: `1.5px solid ${s.reps ? dc.accent + "66" : C.border}`, borderRadius: 10, fontSize: 13.5, background: C.white, outline: "none", color: C.text, width: "100%", transition: "border-color 0.15s" }}
+                      />
+                      <input
+                        type="number" placeholder="45" value={s.weight} min="0" step="2.5"
+                        onChange={e => updateSet(ei, si, "weight", e.target.value)}
+                        style={{ padding: "9px 12px", border: `1.5px solid ${s.weight ? dc.accent + "66" : C.border}`, borderRadius: 10, fontSize: 13.5, background: C.white, outline: "none", color: C.text, width: "100%", transition: "border-color 0.15s" }}
+                      />
+                      <button onClick={() => removeSet(ei, si)} style={{ width: 28, height: 28, borderRadius: 8, background: "#FEE2E2", border: "none", color: "#EF4444", cursor: "pointer", fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+                    </div>
+                  ))}
+
+                  <Btn size="xs" variant="soft" color={dc.accent} onClick={() => addSet(ei)}>+ Add Set</Btn>
+                </div>
+              </Card>
+            );
+          })}
+
+          {/* Notes + Save */}
+          <Card>
+            <SectionLabel color={C.textMuted}>Session Notes</SectionLabel>
+            <textarea
+              value={notes}
+              onChange={e => setNotes(e.target.value)}
+              placeholder="Energy levels, PRs, how you felt…"
+              style={{
+                width: "100%", padding: "12px 14px",
+                border: `1.5px solid ${C.border}`, borderRadius: 12,
+                fontSize: 13.5, color: C.text, background: C.white,
+                resize: "vertical", minHeight: 80, outline: "none",
+                fontFamily: "var(--font-body)", marginBottom: 14, lineHeight: 1.6,
+              }}
+            />
+            <Btn onClick={saveWorkout} color={C.mint} size="lg" style={{ width: "100%", justifyContent: "center" }}>
+              💾 Save Workout
+            </Btn>
+          </Card>
+        </div>
+      )}
+
+      {/* ── BODY PROFILE ── */}
+      {activeSection === "body" && (
+        <div className="stagger">
+          {/* Stats grid */}
+          {latest && !showMeasForm && (
+            <Card>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <div>
+                  <SectionLabel color={C.sky}>Current Measurements</SectionLabel>
+                  <div style={{ fontSize: 11, color: C.textMuted }}>Last updated {fmt(latest.date)}</div>
+                </div>
+                <Btn size="sm" variant="soft" color={C.sky} onClick={() => setShowMeasForm(true)}>Update</Btn>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+                {statFields.filter(f => latest[f.k]).map(f => {
+                  const cur = latest[f.k], p = prev?.[f.k];
+                  const diff = p ? parseFloat((cur - p).toFixed(1)) : null;
+                  const isGood = diff < 0 && ["weight", "waist", "hips", "thigh", "bf"].includes(f.k);
+                  return (
+                    <div key={f.k} style={{ background: C.bg, borderRadius: 14, padding: "14px 12px", textAlign: "center" }}>
+                      <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700, color: C.text, lineHeight: 1 }}>{cur}</div>
+                      <div style={{ fontSize: 10, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, margin: "4px 0" }}>{f.l} {f.u}</div>
+                      {diff !== null && (
+                        <div style={{ fontSize: 11, fontWeight: 600, color: isGood ? C.mintDark : diff > 0 ? C.coral : C.textMuted }}>
+                          {diff > 0 ? "▲" : "▼"} {Math.abs(diff)} {f.u}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+                {latest.height && (
+                  <div style={{ background: C.bg, borderRadius: 14, padding: "14px 12px", textAlign: "center" }}>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700 }}>{latest.height}</div>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, margin: "4px 0" }}>Height</div>
+                  </div>
+                )}
+                {latest.age && (
+                  <div style={{ background: C.bg, borderRadius: 14, padding: "14px 12px", textAlign: "center" }}>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700 }}>{latest.age}</div>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, margin: "4px 0" }}>Age</div>
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+
+          {/* Measurement form */}
+          {(!latest || showMeasForm) && (
+            <Card className="anim-up">
+              <SectionLabel color={C.sky}>{latest ? "Update Measurements" : "Add First Measurements"}</SectionLabel>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12, marginBottom: 16 }}>
+                {measFields.map(f => (
+                  <Input key={f.k} label={f.l} type={f.type || "number"} step={f.step} placeholder={f.l} value={mForm[f.k]} onChange={e => setMForm(p => ({ ...p, [f.k]: e.target.value }))} />
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: 10 }}>
+                <Btn onClick={saveMeasurements} color={C.sky} style={{ flex: 1, justifyContent: "center" }}>Save Measurements</Btn>
+                {latest && <Btn variant="secondary" onClick={() => setShowMeasForm(false)}>Cancel</Btn>}
+              </div>
+            </Card>
+          )}
+
+          {!latest && !showMeasForm && (
+            <Empty icon="📏" title="No measurements yet" text="Add your body stats to track progress over time and calculate your daily calorie needs." />
+          )}
+
+          {/* TDEE Calculator */}
+          <Card>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: showTDEE ? 16 : 0 }}>
+              <div>
+                <SectionLabel color={C.amber}>Calorie Calculator</SectionLabel>
+                <div style={{ fontWeight: 600, fontSize: 14 }}>Daily Energy Needs (TDEE)</div>
+              </div>
+              <Btn size="sm" variant="soft" color={C.amber} onClick={() => setShowTDEE(v => !v)}>
+                {showTDEE ? "Hide" : "Calculate"}
+              </Btn>
+            </div>
+
+            {showTDEE && (
+              <div className="anim-down">
+                {!latest?.weight ? (
+                  <div style={{ fontSize: 13, color: C.textMuted, padding: "12px 0", textAlign: "center" }}>
+                    Add your weight and age in body profile above to calculate your calorie needs.
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+                      <Select label="Activity Level" value={activityLevel} onChange={e => setActivityLevel(e.target.value)}>
+                        <option value="1.2">Sedentary (desk job)</option>
+                        <option value="1.375">Lightly Active (1–2× / week)</option>
+                        <option value="1.55">Moderately Active (2–3× / week)</option>
+                        <option value="1.725">Very Active (4–5× / week)</option>
+                      </Select>
+                      <Select label="Goal" value={goalType} onChange={e => setGoalType(e.target.value)}>
+                        <option value="-500">Aggressive Cut (−500 kcal)</option>
+                        <option value="-300">Fat Loss (−300 kcal)</option>
+                        <option value="0">Maintain Weight</option>
+                        <option value="250">Lean Gain (+250 kcal)</option>
+                      </Select>
+                    </div>
+
+                    {tdee && (
+                      <div style={{ background: C.amberLight, borderRadius: 16, padding: 18 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, textAlign: "center", marginBottom: 14 }}>
+                          {[
+                            { label: "Calories", val: tdee.target, color: C.coral },
+                            { label: "Protein",  val: tdee.protein + "g", color: C.mintDark },
+                            { label: "Carbs",    val: tdee.carbs + "g", color: C.amber },
+                            { label: "Fat",      val: tdee.fat + "g", color: C.lavender },
+                          ].map(m => (
+                            <div key={m.label}>
+                              <div style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 700, color: m.color }}>{m.val}</div>
+                              <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1 }}>{m.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                        <div style={{ fontSize: 11, color: C.textSub, borderTop: `1px solid ${C.amberDark}33`, paddingTop: 10 }}>
+                          BMR: <strong>{tdee.bmr} kcal</strong> · TDEE: <strong>{tdee.tdee} kcal</strong> · Target: <strong>{tdee.target} kcal</strong>
+                        </div>
+                        <Btn size="sm" variant="soft" color={C.amberDark} style={{ marginTop: 12 }}
+                          onClick={() => { try { localStorage.setItem("sw2_calorieTargets", JSON.stringify(tdee)); } catch {} showToast("✅ Calorie targets saved to Nutrition!"); }}>
+                          Save to Nutrition Tab
+                        </Btn>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+          </Card>
+        </div>
+      )}
+
+      {/* ── HISTORY ── */}
+      {activeSection === "history" && (
+        <div className="stagger">
+          {!sorted.length ? (
+            <Empty icon="📋" title="No sessions logged" text="Complete your first workout above and it will appear here." />
+          ) : (
+            <>
+              {/* Summary bar */}
+              <Card style={{ padding: "14px 18px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, textAlign: "center" }}>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, color: C.mint }}>{sorted.length}</div>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5 }}>Sessions</div>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, color: C.sky }}>
+                      {sorted.reduce((s, w) => s + (w.duration || 0), 0)}
+                    </div>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5 }}>Total Min</div>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, color: C.coral }}>
+                      {(() => {
+                        let streak = 0;
+                        const dates = [...new Set(sorted.map(w => w.date))].sort((a, b) => new Date(b) - new Date(a));
+                        for (let i = 0; i < dates.length; i++) {
+                          const d = new Date(dates[i]);
+                          const expected = new Date();
+                          expected.setDate(expected.getDate() - i * 2); // every ~2 days
+                          if (Math.abs(d - expected) < 3 * 24 * 60 * 60 * 1000) streak++;
+                          else break;
+                        }
+                        return streak;
+                      })()}
+                    </div>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5 }}>Streak 🔥</div>
+                  </div>
+                </div>
+              </Card>
+
+              {sorted.slice(0, 15).map(w => {
+                const dc = dayColors[w.day] || dayColors.A;
+                return (
+                  <Card key={w.id} style={{ padding: 0, overflow: "hidden", borderLeft: `4px solid ${dc.accent}` }}>
+                    <div style={{ padding: "14px 18px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+                          <Chip color={dc.accent} bg={dc.light}>Day {w.day}</Chip>
+                          <span style={{ fontWeight: 600, fontSize: 14 }}>{dc.label}</span>
+                        </div>
+                        <div style={{ fontSize: 12, color: C.textMuted }}>
+                          {fmt(w.date)} · {w.duration} min · {w.exercises.length} exercises
+                        </div>
+                      </div>
+                      <button onClick={() => deleteWorkout(w.id)} style={{ background: "#FEE2E2", border: "none", color: "#EF4444", borderRadius: 8, padding: "5px 10px", cursor: "pointer", fontSize: 12, fontWeight: 600 }}>Remove</button>
+                    </div>
+                    <div style={{ padding: "12px 18px" }}>
+                      {w.exercises.map(ex => (
+                        <div key={ex.name} style={{ marginBottom: 10 }}>
+                          <div style={{ fontWeight: 600, fontSize: 12.5, marginBottom: 6, color: C.text }}>{ex.name}</div>
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                            {ex.sets.map((s, i) => (
+                              <span key={i} style={{ background: dc.light, borderRadius: 8, padding: "4px 10px", fontSize: 12, color: dc.dark, fontWeight: 500 }}>
+                                S{i + 1}: {s.reps} reps{s.weight ? ` @ ${s.weight}lb` : ""}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      {w.notes && (
+                        <div style={{ fontSize: 12, color: C.textMuted, fontStyle: "italic", marginTop: 6, paddingTop: 8, borderTop: `1px solid ${C.border}` }}>
+                          📝 {w.notes}
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                );
+              })}
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── COMMON FOODS ────────────────────────────────────────────────────
+const COMMON_FOODS = [
+  { name: "Chicken Breast (grilled)", cal: 165, p: 31, c: 0, f: 3.6 },
+  { name: "Salmon (baked)", cal: 208, p: 20, c: 0, f: 13 },
+  { name: "Eggs (whole)", cal: 155, p: 13, c: 1.1, f: 11 },
+  { name: "Greek Yogurt (non-fat)", cal: 59, p: 10, c: 3.6, f: 0.4 },
+  { name: "Cottage Cheese (2%)", cal: 98, p: 11, c: 3.4, f: 4.3 },
+  { name: "Whey Protein (1 scoop)", cal: 120, p: 25, c: 3, f: 1.5 },
+  { name: "Tuna (canned in water)", cal: 116, p: 26, c: 0, f: 1 },
+  { name: "Ground Turkey (93% lean)", cal: 148, p: 17, c: 0, f: 8.3 },
+  { name: "Oats (dry)", cal: 389, p: 17, c: 66, f: 7 },
+  { name: "Brown Rice (cooked)", cal: 123, p: 2.7, c: 26, f: 1 },
+  { name: "Sweet Potato", cal: 86, p: 1.6, c: 20, f: 0.1 },
+  { name: "Quinoa (cooked)", cal: 120, p: 4.4, c: 21, f: 1.9 },
+  { name: "Black Beans", cal: 132, p: 8.9, c: 24, f: 0.5 },
+  { name: "Banana", cal: 89, p: 1.1, c: 23, f: 0.3 },
+  { name: "Apple", cal: 52, p: 0.3, c: 14, f: 0.2 },
+  { name: "Blueberries", cal: 57, p: 0.7, c: 14, f: 0.3 },
+  { name: "Avocado", cal: 160, p: 2, c: 9, f: 15 },
+  { name: "Almonds", cal: 579, p: 21, c: 22, f: 50 },
+  { name: "Olive Oil", cal: 884, p: 0, c: 0, f: 100 },
+  { name: "Broccoli (cooked)", cal: 35, p: 2.4, c: 7.2, f: 0.4 },
+  { name: "Spinach (raw)", cal: 23, p: 2.9, c: 3.6, f: 0.4 },
+  { name: "White Rice (cooked)", cal: 130, p: 2.7, c: 28, f: 0.3 },
+  { name: "Pasta (cooked)", cal: 158, p: 5.8, c: 31, f: 0.9 },
+  { name: "Bread (whole wheat)", cal: 247, p: 13, c: 41, f: 4.2 },
+  { name: "Cheddar Cheese", cal: 403, p: 25, c: 1.3, f: 33 },
+  { name: "Milk (2%)", cal: 50, p: 3.4, c: 4.8, f: 2 },
+];
+
+// ─── PAGE: NUTRITION ─────────────────────────────────────────────────
+function NutritionPage({ showToast }) {
+  const [foodLog, setFoodLog] = useStore("foodLog", []);
+  const [date, setDate] = useState(todayStr());
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [searching, setSearching] = useState(false);
+  const [modal, setModal] = useState(null);
+  const [serving, setServing] = useState("100");
+  const [meal, setMeal] = useState("lunch");
+
+  const targets = (() => {
+    try { return JSON.parse(localStorage.getItem("sw2_calorieTargets")) || {}; }
+    catch { return {}; }
+  })();
+  const calTarget  = targets.target  || 2000;
+  const protTarget = targets.protein || 150;
+  const carbTarget = targets.carbs   || 200;
+  const fatTarget  = targets.fat     || 67;
+
+  const dayLog  = foodLog.filter(e => e.date === date);
+  const totCal  = Math.round(dayLog.reduce((s, e) => s + e.kcal, 0));
+  const totP    = Math.round(dayLog.reduce((s, e) => s + e.p, 0) * 10) / 10;
+  const totC    = Math.round(dayLog.reduce((s, e) => s + e.c, 0) * 10) / 10;
+  const totF    = Math.round(dayLog.reduce((s, e) => s + e.f, 0) * 10) / 10;
+  const remaining = calTarget - totCal;
+
+  const meals = ["breakfast", "lunch", "dinner", "snacks"];
+  const mealMeta = {
+    breakfast: { label: "Breakfast", icon: "🌅", color: C.amber },
+    lunch:     { label: "Lunch",     icon: "☀️",  color: C.mint },
+    dinner:    { label: "Dinner",    icon: "🌙",  color: C.lavender },
+    snacks:    { label: "Snacks",    icon: "🍎",  color: C.peach },
+  };
+
+  const search = async () => {
+    if (!query.trim()) return;
+    setSearching(true);
+    try {
+      const res = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&action=process&json=1&page_size=12&fields=product_name,brands,nutriments`);
+      const d = await res.json();
+      const products = (d.products || [])
+        .filter(p => p.product_name && p.nutriments?.["energy-kcal_100g"] != null)
+        .slice(0, 10)
+        .map(p => ({
+          name: p.product_name + (p.brands ? ` (${p.brands.split(",")[0].trim()})` : ""),
+          cal: Math.round(p.nutriments["energy-kcal_100g"] || 0),
+          p: Math.round((p.nutriments["proteins_100g"] || 0) * 10) / 10,
+          c: Math.round((p.nutriments["carbohydrates_100g"] || 0) * 10) / 10,
+          f: Math.round((p.nutriments["fat_100g"] || 0) * 10) / 10,
+        }));
+      setResults(products.length ? products : COMMON_FOODS.filter(f => f.name.toLowerCase().includes(query.toLowerCase())));
+    } catch {
+      setResults(COMMON_FOODS.filter(f => f.name.toLowerCase().includes(query.toLowerCase())));
+    }
+    setSearching(false);
+  };
+
+  const addFood = () => {
+    if (!modal) return;
+    const r = parseFloat(serving) / 100;
+    const entry = {
+      id: Date.now(), date, meal, name: modal.name,
+      grams: parseFloat(serving),
+      kcal: Math.round(modal.cal * r),
+      p: Math.round(modal.p * r * 10) / 10,
+      c: Math.round(modal.c * r * 10) / 10,
+      f: Math.round(modal.f * r * 10) / 10,
+    };
+    setFoodLog(prev => [...prev, entry]);
+    setModal(null);
+    showToast(`✅ Added to ${mealMeta[meal].label}`);
+  };
+
+  const removeFood = id => setFoodLog(prev => prev.filter(e => e.id !== id));
+
+  const macroRows = [
+    { label: "Calories", val: totCal, max: calTarget, color: C.coral, unit: "kcal" },
+    { label: "Protein",  val: totP,   max: protTarget, color: C.mint,  unit: "g" },
+    { label: "Carbs",    val: totC,   max: carbTarget, color: C.amber, unit: "g" },
+    { label: "Fat",      val: totF,   max: fatTarget,  color: C.lavender, unit: "g" },
+  ];
+
+  return (
+    <div>
+      {/* Date picker */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+        <input type="date" value={date} onChange={e => setDate(e.target.value)}
+          style={{ padding: "9px 14px", border: `1.5px solid ${C.border}`, borderRadius: 12, fontSize: 13, background: C.white, outline: "none", color: C.text }} />
+        {dayLog.length > 0 && (
+          <Btn size="sm" variant="danger" onClick={() => { setFoodLog(p => p.filter(e => e.date !== date)); showToast("Day cleared"); }}>
+            Clear Day
+          </Btn>
+        )}
+      </div>
+
+      {/* Macro summary */}
+      <Card>
+        <SectionLabel color={C.mint}>Today's Nutrition</SectionLabel>
+        {/* Calorie hero */}
+        <div style={{ textAlign: "center", marginBottom: 16 }}>
+          <div style={{ fontFamily: "var(--font-display)", fontSize: 48, fontWeight: 700, color: remaining >= 0 ? C.mint : C.peach, lineHeight: 1 }}>{totCal}</div>
+          <div style={{ fontSize: 12, color: C.textMuted, marginTop: 4 }}>
+            {remaining >= 0
+              ? <span><strong style={{ color: C.mintDark }}>{remaining} kcal</strong> remaining of {calTarget}</span>
+              : <span><strong style={{ color: C.peach }}>{Math.abs(remaining)} kcal</strong> over goal</span>
+            }
+          </div>
+        </div>
+        {/* Macro bars */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {macroRows.map(m => (
+            <div key={m.label}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, fontWeight: 600, marginBottom: 5 }}>
+                <span style={{ color: C.textSub }}>{m.label}</span>
+                <span style={{ color: m.color }}>{m.val}{m.unit} <span style={{ color: C.textMuted, fontWeight: 400 }}>/ {m.max}{m.unit}</span></span>
+              </div>
+              <ProgressBar value={m.val} max={m.max} color={m.color} height={7} />
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* Search */}
+      <Card>
+        <SectionLabel color={C.sky}>Add Food</SectionLabel>
+        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && search()}
+            placeholder="Search any food — chicken breast, oats…"
+            style={{ flex: 1, padding: "11px 14px", border: `1.5px solid ${C.border}`, borderRadius: 12, fontSize: 13.5, background: C.white, outline: "none", color: C.text }}
+          />
+          <Btn onClick={search} disabled={searching} color={C.sky}>{searching ? "…" : "Search"}</Btn>
+        </div>
+
+        {/* Quick-add chips */}
+        {!results.length && !searching && (
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: C.textMuted, letterSpacing: 1, textTransform: "uppercase", marginBottom: 8 }}>Quick Add</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {COMMON_FOODS.slice(0, 12).map(f => (
+                <button key={f.name} onClick={() => { setModal(f); setServing("100"); }}
+                  style={{ padding: "5px 12px", borderRadius: 20, fontSize: 12, background: C.bg2, border: `1px solid ${C.border}`, cursor: "pointer", color: C.textSub, fontWeight: 500, transition: "all 0.15s" }}
+                  onMouseEnter={e => { e.currentTarget.style.background = C.mintLight; e.currentTarget.style.color = C.mintDark; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = C.bg2; e.currentTarget.style.color = C.textSub; }}
+                >{f.name.split("(")[0].trim()}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Results */}
+        {results.length > 0 && (
+          <div className="stagger">
+            {results.map((f, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 0", borderBottom: i < results.length - 1 ? `1px solid ${C.border}` : "none", gap: 10 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 600, fontSize: 13, color: C.text, marginBottom: 2 }}>{f.name}</div>
+                  <div style={{ fontSize: 11, color: C.textMuted }}>per 100g · P:{f.p}g · C:{f.c}g · F:{f.f}g</div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                  <span style={{ fontWeight: 700, color: C.coral, fontSize: 13 }}>{f.cal} kcal</span>
+                  <Btn size="sm" variant="soft" color={C.mint} onClick={() => { setModal(f); setServing("100"); }}>+ Add</Btn>
+                </div>
+              </div>
+            ))}
+            <button onClick={() => setResults([])} style={{ fontSize: 12, color: C.textMuted, background: "none", border: "none", cursor: "pointer", marginTop: 8 }}>✕ Clear results</button>
+          </div>
+        )}
+      </Card>
+
+      {/* Food log by meal */}
+      {!dayLog.length ? (
+        <Empty icon="🥗" title="Nothing logged yet" text="Search for foods above to start tracking your meals." />
+      ) : (
+        meals.map(m => {
+          const items = dayLog.filter(e => e.meal === m);
+          if (!items.length) return null;
+          const mm = mealMeta[m];
+          const mealCals = items.reduce((s, e) => s + e.kcal, 0);
+          return (
+            <Card key={m} style={{ padding: 0, overflow: "hidden" }}>
+              <div style={{ padding: "12px 18px", background: mm.color + "12", borderBottom: `1px solid ${mm.color}22`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ fontWeight: 700, fontSize: 13.5, color: mm.color }}>{mm.icon} {mm.label}</div>
+                <span style={{ fontSize: 12, fontWeight: 600, color: mm.color }}>{mealCals} kcal</span>
+              </div>
+              <div style={{ padding: "6px 0" }}>
+                {items.map((e, i) => (
+                  <div key={e.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 18px", borderBottom: i < items.length - 1 ? `1px solid ${C.border}` : "none" }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 600, fontSize: 13, color: C.text, marginBottom: 2 }}>{e.name}</div>
+                      <div style={{ fontSize: 11, color: C.textMuted }}>{e.grams}g · P:{e.p}g · C:{e.c}g · F:{e.f}g</div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                      <span style={{ fontWeight: 700, color: C.coral, fontSize: 13 }}>{e.kcal} kcal</span>
+                      <button onClick={() => removeFood(e.id)} style={{ width: 28, height: 28, borderRadius: 8, background: "#FEE2E2", border: "none", color: "#EF4444", cursor: "pointer", fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          );
+        })
+      )}
+
+      {/* Add food modal */}
+      {modal && (
+        <div className="anim-in" onClick={e => e.target === e.currentTarget && setModal(null)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)", zIndex: 800, display: "flex", alignItems: "flex-end", justifyContent: "center", padding: 16 }}>
+          <div className="anim-up" style={{ background: C.white, borderRadius: 24, padding: 24, width: "100%", maxWidth: 420, boxShadow: "0 32px 80px rgba(0,0,0,0.2)" }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, marginBottom: 2 }}>{modal.name}</div>
+            <div style={{ fontSize: 12, color: C.textMuted, marginBottom: 20 }}>Per 100g: {modal.cal} kcal · P:{modal.p}g · C:{modal.c}g · F:{modal.f}g</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+              <Input label="Serving (g)" type="number" value={serving} min="1" max="2000" onChange={e => setServing(e.target.value)} />
+              <Select label="Meal" value={meal} onChange={e => setMeal(e.target.value)}>
+                {meals.map(m => <option key={m} value={m}>{mealMeta[m].icon} {mealMeta[m].label}</option>)}
+              </Select>
+            </div>
+            {/* Live preview */}
+            <div style={{ background: C.bg, borderRadius: 14, padding: 16, marginBottom: 18, display: "grid", gridTemplateColumns: "repeat(4,1fr)", textAlign: "center", gap: 8 }}>
+              {[
+                { label: "kcal",    val: Math.round(modal.cal * parseFloat(serving || 0) / 100),               color: C.coral },
+                { label: "protein", val: (Math.round(modal.p * parseFloat(serving || 0) / 100 * 10) / 10) + "g", color: C.mintDark },
+                { label: "carbs",   val: (Math.round(modal.c * parseFloat(serving || 0) / 100 * 10) / 10) + "g", color: C.amber },
+                { label: "fat",     val: (Math.round(modal.f * parseFloat(serving || 0) / 100 * 10) / 10) + "g", color: C.lavender },
+              ].map(m => (
+                <div key={m.label}>
+                  <div style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: m.color }}>{m.val}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1 }}>{m.label}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <Btn onClick={addFood} color={C.mint} style={{ flex: 1, justifyContent: "center" }}>Add to Log</Btn>
+              <Btn variant="secondary" onClick={() => setModal(null)}>Cancel</Btn>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── PAGE: DASHBOARD ─────────────────────────────────────────────────
+function DashboardPage({ showToast }) {
+  const [workouts] = useStore("workouts", []);
+  const [measurements] = useStore("measurements", []);
+  const [foodLog] = useStore("foodLog", []);
+  const [goals, setGoals] = useStore("goals", []);
+  const [showGoalForm, setShowGoalForm] = useState(false);
+  const [gForm, setGForm] = useState({ name: "", category: "strength", target: "", current: "", targetDate: "" });
+  const canvasRef = useRef(null);
+
+  const now = new Date();
+  const weekAgo = new Date(now - 7 * 864e5);
+  const thisWeek = workouts.filter(w => new Date(w.date + "T12:00") >= weekAgo);
+
+  // Streak
+  let streak = 0;
+  const uniqueDates = [...new Set(workouts.map(w => w.date))].sort().reverse();
+  let check = new Date(); check.setHours(0, 0, 0, 0);
+  for (const d of uniqueDates) {
+    const wd = new Date(d + "T12:00"); wd.setHours(0, 0, 0, 0);
+    if (Math.round((check - wd) / 864e5) <= 1) { streak++; check = wd; } else break;
+  }
+
+  const recentCals = foodLog.filter(e => new Date(e.date + "T12:00") >= weekAgo);
+  const avgCal = recentCals.length
+    ? Math.round(recentCals.reduce((s, e) => s + e.kcal, 0) / Math.max(1, [...new Set(recentCals.map(e => e.date))].length))
+    : null;
+  const latest = measurements[measurements.length - 1];
+  const sorted = [...workouts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const targets = (() => {
+    try { return JSON.parse(localStorage.getItem("sw2_calorieTargets")) || {}; } catch { return {}; }
+  })();
+
+  // Weight chart
+  useEffect(() => {
+    const data = measurements
+      .filter(m => m.weight)
+      .map(m => ({ date: new Date(m.date + "T12:00"), w: m.weight }))
+      .sort((a, b) => a.date - b.date);
+    const canvas = canvasRef.current;
+    if (!canvas || data.length < 2) return;
+    const W = canvas.offsetWidth, H = 160;
+    canvas.width = W * 2; canvas.height = H * 2;
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.scale(2, 2);
+    const weights = data.map(d => d.w);
+    const minW = Math.min(...weights) - 3, maxW = Math.max(...weights) + 3;
+    const px = i => (i / (data.length - 1)) * (W - 48) + 24;
+    const py = w => H - 24 - ((w - minW) / (maxW - minW || 1)) * (H - 44);
+    ctx.clearRect(0, 0, W, H);
+    // Grid lines
+    ctx.strokeStyle = C.bg2; ctx.lineWidth = 1;
+    for (let i = 0; i < 4; i++) {
+      const y = 24 + i * (H - 44) / 3;
+      ctx.beginPath(); ctx.moveTo(24, y); ctx.lineTo(W - 24, y); ctx.stroke();
+    }
+    // Fill
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, C.mint + "33"); grad.addColorStop(1, C.mint + "00");
+    ctx.beginPath(); ctx.moveTo(px(0), py(data[0].w));
+    data.forEach((d, i) => ctx.lineTo(px(i), py(d.w)));
+    ctx.lineTo(px(data.length - 1), H - 24); ctx.lineTo(px(0), H - 24); ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+    // Line
+    ctx.beginPath(); ctx.strokeStyle = C.mint; ctx.lineWidth = 2.5; ctx.lineJoin = "round";
+    data.forEach((d, i) => i === 0 ? ctx.moveTo(px(i), py(d.w)) : ctx.lineTo(px(i), py(d.w)));
+    ctx.stroke();
+    // Points + labels
+    data.forEach((d, i) => {
+      ctx.beginPath(); ctx.arc(px(i), py(d.w), 4, 0, Math.PI * 2);
+      ctx.fillStyle = C.mint; ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = C.text; ctx.font = "bold 10px Plus Jakarta Sans"; ctx.textAlign = "center";
+      ctx.fillText(d.w + "lb", px(i), py(d.w) - 10);
+    });
+  }, [measurements]);
+
+  const saveGoal = () => {
+    if (!gForm.name.trim()) { showToast("Enter a goal name"); return; }
+    const tNum = parseFloat(gForm.target), cNum = parseFloat(gForm.current);
+    let pct = 0;
+    if (!isNaN(tNum) && !isNaN(cNum) && tNum > 0) {
+      const lowerIsBetter = ["weight", "measurement"].includes(gForm.category);
+      pct = lowerIsBetter
+        ? Math.min(Math.round(Math.max(0, (parseFloat(gForm.current) - tNum) / (parseFloat(gForm.current) - tNum || 1) * 100), 0), 100)
+        : Math.min(Math.round(cNum / tNum * 100), 100);
+    }
+    setGoals(prev => [...prev, { ...gForm, pct, id: Date.now() }]);
+    setGForm({ name: "", category: "strength", target: "", current: "", targetDate: "" });
+    setShowGoalForm(false);
+    showToast("✅ Goal saved!");
+  };
+
+  const statCards = [
+    { label: "Workouts This Week", val: thisWeek.length, icon: "🏋️", color: C.mint, sub: "sessions" },
+    { label: "Day Streak",         val: streak,           icon: "🔥", color: C.coral, sub: streak > 0 ? "keep it up!" : "start today" },
+    { label: "Avg Daily Cals",     val: avgCal || "—",    icon: "🥗", color: C.amber, sub: avgCal ? `of ${targets.target || 2000} goal` : "log food to see" },
+    { label: "Current Weight",     val: latest?.weight ? latest.weight + " lb" : "—", icon: "⚖️", color: C.sky, sub: latest?.date ? "as of " + fmt(latest.date) : "add measurement" },
+  ];
+
+  return (
+    <div className="stagger">
+      {/* Stat cards */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 12, marginBottom: 8 }}>
+        {statCards.map((s, i) => (
+          <div key={i} style={{ background: C.white, borderRadius: 20, padding: "18px 16px", boxShadow: "var(--shadow-sm)", borderTop: `3px solid ${s.color}` }}>
+            <div style={{ fontSize: 26, marginBottom: 8 }}>{s.icon}</div>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, color: s.color, lineHeight: 1, marginBottom: 4 }}>{s.val}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.2, marginBottom: 2 }}>{s.label}</div>
+            <div style={{ fontSize: 11, color: C.textMuted }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Goals */}
+      <Card>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: showGoalForm ? 16 : (goals.length ? 16 : 0) }}>
+          <div>
+            <SectionLabel color={C.lavender}>Goals</SectionLabel>
+            <div style={{ fontWeight: 700, fontSize: 15 }}>My Fitness Goals</div>
+          </div>
+          <Btn size="sm" variant="soft" color={C.lavender} onClick={() => setShowGoalForm(v => !v)}>
+            {showGoalForm ? "Cancel" : "+ Add Goal"}
+          </Btn>
+        </div>
+
+        {showGoalForm && (
+          <div className="anim-up" style={{ background: C.bg, borderRadius: 16, padding: 16, marginBottom: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12 }}>
+              <div style={{ gridColumn: "1/-1" }}>
+                <Input label="Goal Description" placeholder="e.g. Squat 100 lbs · Lose 15 lbs · Work out 3x/week" value={gForm.name} onChange={e => setGForm(p => ({ ...p, name: e.target.value }))} />
+              </div>
+              <Select label="Category" value={gForm.category} onChange={e => setGForm(p => ({ ...p, category: e.target.value }))}>
+                <option value="strength">💪 Strength</option>
+                <option value="weight">⚖️ Weight Loss</option>
+                <option value="habit">📅 Habit</option>
+                <option value="measurement">📏 Measurement</option>
+                <option value="nutrition">🥗 Nutrition</option>
+              </Select>
+              <Input label="Target Date" type="date" value={gForm.targetDate} onChange={e => setGForm(p => ({ ...p, targetDate: e.target.value }))} />
+              <Input label="Current Value" placeholder="e.g. 65 lbs" value={gForm.current} onChange={e => setGForm(p => ({ ...p, current: e.target.value }))} />
+              <Input label="Target Value" placeholder="e.g. 100 lbs" value={gForm.target} onChange={e => setGForm(p => ({ ...p, target: e.target.value }))} />
+            </div>
+            <Btn onClick={saveGoal} color={C.lavender}>Save Goal</Btn>
+          </div>
+        )}
+
+        {!goals.length && !showGoalForm
+          ? <Empty icon="🎯" title="No goals yet" text="Add your first fitness goal to track your progress." />
+          : goals.map((g, i) => (
+            <div key={g.id || i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: i < goals.length - 1 ? `1px solid ${C.border}` : "none" }}>
+              <span style={{ fontSize: 28, flexShrink: 0 }}>{GOAL_ICONS[g.category] || "🎯"}</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600, fontSize: 13.5, marginBottom: 2 }}>{g.name}</div>
+                <div style={{ fontSize: 11, color: C.textMuted, marginBottom: 8 }}>
+                  {g.current} → {g.target}{g.targetDate ? " · By " + fmt(g.targetDate) : ""}
+                </div>
+                <ProgressBar value={g.pct || 0} max={100} color={C.lavender} height={6} />
+              </div>
+              <div style={{ textAlign: "right", flexShrink: 0 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: C.lavender }}>{g.pct || 0}%</div>
+                <button onClick={() => { setGoals(prev => prev.filter((_, j) => j !== i)); showToast("Removed"); }}
+                  style={{ marginTop: 4, fontSize: 11, color: "#EF4444", background: "none", border: "none", cursor: "pointer" }}>Remove</button>
+              </div>
+            </div>
+          ))
+        }
+      </Card>
+
+      {/* Recent sessions */}
+      <Card>
+        <SectionLabel color={C.coral}>Activity</SectionLabel>
+        <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 14 }}>Recent Sessions</div>
+        {!sorted.length
+          ? <Empty icon="🏋️" title="No sessions yet" text="Log your first workout in the Tracker tab." />
+          : sorted.slice(0, 5).map((w, i) => {
+            const dc = w.day === "A" ? { accent: C.mint, light: C.mintLight } : { accent: C.coral, light: C.coralLight };
+            return (
+              <div key={w.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 0", borderBottom: i < Math.min(sorted.length, 5) - 1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: dc.accent, flexShrink: 0 }} />
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 600, fontSize: 13 }}>Day {w.day} — {w.day === "A" ? "Lower Body Drive" : "Hip & Pull Focus"}</div>
+                  <div style={{ fontSize: 11, color: C.textMuted }}>{fmt(w.date)} · {w.exercises.length} exercises · {w.duration} min</div>
+                </div>
+                <Chip color={dc.accent} bg={dc.light}>Day {w.day}</Chip>
+              </div>
+            );
+          })
+        }
+      </Card>
+
+      {/* Weight chart */}
+      <Card>
+        <SectionLabel color={C.sky}>Body Weight</SectionLabel>
+        <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 14 }}>Weight Trend</div>
+        {measurements.filter(m => m.weight).length < 2
+          ? <Empty icon="⚖️" title="Not enough data" text="Log at least 2 measurements in the Tracker to see your weight trend." />
+          : <canvas ref={canvasRef} style={{ width: "100%", display: "block", borderRadius: 10 }} />
+        }
+      </Card>
+    </div>
+  );
+}
+
+// ─── DESKTOP SIDEBAR ─────────────────────────────────────────────────
+function Sidebar({ page, setPage, tabs }) {
+  return (
+    <div className="desktop-sidebar" style={{
+      position: "fixed", left: 0, top: 0, bottom: 0, width: 240,
+      background: "rgba(255,255,255,0.9)", backdropFilter: "blur(20px)",
+      borderRight: `1px solid ${C.border}`,
+      flexDirection: "column", padding: "28px 16px",
+      zIndex: 100, display: "none",
+    }}>
+      {/* Logo */}
+      <div style={{ padding: "0 8px", marginBottom: 32 }}>
+        <div style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: C.text, lineHeight: 1 }}>
+          S&amp;<em style={{ color: C.mint }}>W</em>
+        </div>
+        <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: C.textMuted, marginTop: 4 }}>Strength & Wellness</div>
+      </div>
+
+      {/* Nav items */}
+      <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        {tabs.map(t => {
+          const active = page === t.id;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setPage(t.id)}
+              style={{
+                display: "flex", alignItems: "center", gap: 12, width: "100%",
+                padding: "11px 14px", borderRadius: 14, border: "none", cursor: "pointer",
+                background: active ? C.mint + "15" : "transparent",
+                color: active ? C.mintDark : C.textSub,
+                fontWeight: active ? 700 : 500, fontSize: 13.5,
+                transition: "all 0.15s",
+                textAlign: "left",
+              }}
+              onMouseEnter={e => { if (!active) e.currentTarget.style.background = C.bg2; }}
+              onMouseLeave={e => { if (!active) e.currentTarget.style.background = "transparent"; }}
+            >
+              <span style={{ fontSize: 18, width: 24, textAlign: "center" }}>{t.icon}</span>
+              {t.label}
+              {active && <div style={{ marginLeft: "auto", width: 6, height: 6, borderRadius: "50%", background: C.mint }} />}
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* Bottom accent */}
+      <div style={{ marginTop: "auto", padding: "16px 8px" }}>
+        <div style={{ background: C.mintLight, borderRadius: 14, padding: "14px 14px" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: C.mintDark, marginBottom: 4 }}>💚 Today's Reminder</div>
+          <div style={{ fontSize: 11, color: C.textSub, lineHeight: 1.55 }}>Consistency beats intensity. Every session counts.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── MOBILE TAB BAR ──────────────────────────────────────────────────
+function TabBar({ page, setPage, tabs }) {
+  return (
+    <div className="mobile-tabbar" style={{
+      position: "fixed", bottom: 0, left: 0, right: 0,
+      background: "rgba(255,255,255,0.92)", backdropFilter: "blur(20px)",
+      borderTop: `1px solid ${C.border}`,
+      padding: "8px 8px 16px",
+      display: "none", alignItems: "center", justifyContent: "space-around",
+      zIndex: 100,
+    }}>
+      {tabs.map(t => {
+        const active = page === t.id;
+        return (
+          <button
+            key={t.id}
+            onClick={() => setPage(t.id)}
+            style={{
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
+              background: "none", border: "none", cursor: "pointer",
+              padding: "6px 14px", borderRadius: 14,
+              color: active ? C.mintDark : C.textMuted,
+              transition: "all 0.15s",
+              minWidth: 64,
+            }}
+          >
+            <div style={{
+              width: 36, height: 36, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center",
+              background: active ? C.mintLight : "transparent",
+              transition: "all 0.2s",
+              fontSize: 18,
+            }}>{t.icon}</div>
+            <span style={{ fontSize: 10, fontWeight: active ? 700 : 500, letterSpacing: 0.3 }}>{t.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── PAGE HEADER ─────────────────────────────────────────────────────
+function PageHeader({ page }) {
+  const headers = {
+    tracker:   { label: "Workout Log", title: "My Tracker", sub: "Log sets, reps, weight & body measurements.", color: C.coral },
+    nutrition: { label: "Food & Macros", title: "My Nutrition", sub: "Search foods, log meals, track macros & calories.", color: C.mint },
+    dashboard: { label: "Overview", title: "My Dashboard", sub: "Progress at a glance — workouts, streak, goals, trends.", color: C.sky },
+    pcos:      { label: "Clinical Reference", title: "PCOS Guide", sub: "Evidence-based pharmacist-level reference. 2023 International Guideline.", color: C.lavender },
+  };
+  const h = headers[page];
+  if (!h) return null;
+  return (
+    <div style={{ marginBottom: 20, paddingTop: 4 }}>
+      <SectionLabel color={h.color}>{h.label}</SectionLabel>
+      <Display style={{ marginBottom: 6 }}>{h.title}</Display>
+      <Sub>{h.sub}</Sub>
+    </div>
+  );
+}
+
+// ─── PAGE: PCOS CLINICAL REFERENCE ───────────────────────────────────
+function PCOSPage() {
+  const [activeSection, setActiveSection] = useState("overview");
+  const [expandedCard, setExpandedCard] = useState(null);
+
+  const toggle = (id) => setExpandedCard(prev => prev === id ? null : id);
+
+  const sections = [
+    { id: "overview",   label: "Overview",    icon: "🔬" },
+    { id: "diagnosis",  label: "Diagnosis",   icon: "📋" },
+    { id: "pharm",      label: "Pharmacology",icon: "💊" },
+    { id: "nonpharm",   label: "Non-Pharm",   icon: "🥦" },
+    { id: "pearls",     label: "Pearls",      icon: "💎" },
+    { id: "holistic",   label: "Holistic",    icon: "🌿" },
+  ];
+
+  // ── EXPANDABLE CARD ──
+  const ExpandCard = ({ id, title, icon, color = C.lavender, badge, children }) => {
+    const open = expandedCard === id;
+    return (
+      <div style={{ background: C.white, borderRadius: 18, marginBottom: 10, overflow: "hidden", boxShadow: "var(--shadow-sm)", border: `1px solid ${C.border}` }}>
+        <button onClick={() => toggle(id)} style={{
+          width: "100%", padding: "16px 18px", background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12, textAlign: "left",
+        }}>
+          <div style={{ width: 38, height: 38, borderRadius: 12, background: color + "18", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>{icon}</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 700, fontSize: 13.5, color: C.text }}>{title}</div>
+            {badge && <div style={{ fontSize: 10, color: color, fontWeight: 600, marginTop: 2 }}>{badge}</div>}
+          </div>
+          <span style={{ color: C.textMuted, fontSize: 16, transition: "transform 0.25s", transform: open ? "rotate(180deg)" : "rotate(0deg)", flexShrink: 0 }}>⌄</span>
+        </button>
+        {open && (
+          <div className="anim-down" style={{ padding: "0 18px 18px", borderTop: `1px solid ${C.border}` }}>
+            <div style={{ paddingTop: 14 }}>{children}</div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // ── EVIDENCE PILL ──
+  const EvidencePill = ({ level, source }) => {
+    const colors = { "Strong": C.mint, "Moderate": C.amber, "Conditional": C.coral, "Expert": C.sky, "Emerging": C.lavender };
+    return (
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: (colors[level] || C.lavender) + "15", borderRadius: 20, padding: "3px 10px", marginBottom: 8 }}>
+        <span style={{ fontSize: 9, fontWeight: 800, color: colors[level] || C.lavender, textTransform: "uppercase", letterSpacing: 1.5 }}>{level} Evidence</span>
+        {source && <span style={{ fontSize: 9, color: C.textMuted }}>· {source}</span>}
+      </div>
+    );
+  };
+
+  // ── DRUG CARD ──
+  const DrugCard = ({ name, class: cls, dose, indication, monitoring, pearls, color = C.lavender, evidence, caution }) => (
+    <div style={{ background: C.bg, borderRadius: 14, padding: 16, marginBottom: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+        <div>
+          <div style={{ fontWeight: 800, fontSize: 14, color: C.text }}>{name}</div>
+          <div style={{ fontSize: 11, color: color, fontWeight: 600 }}>{cls}</div>
+        </div>
+        {evidence && <EvidencePill level={evidence.level} source={evidence.source} />}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 10 }}>
+        <div style={{ background: C.white, borderRadius: 10, padding: "10px 12px" }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 4 }}>Dosing</div>
+          <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>{dose}</div>
+        </div>
+        <div style={{ background: C.white, borderRadius: 10, padding: "10px 12px" }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 4 }}>Indication</div>
+          <div style={{ fontSize: 12, color: C.text, lineHeight: 1.5 }}>{indication}</div>
+        </div>
+      </div>
+      {monitoring && (
+        <div style={{ background: C.amberLight, borderRadius: 10, padding: "8px 12px", marginBottom: 8 }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: C.amberDark, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 3 }}>🔍 Monitor</div>
+          <div style={{ fontSize: 12, color: C.textSub }}>{monitoring}</div>
+        </div>
+      )}
+      {caution && (
+        <div style={{ background: C.peachLight, borderRadius: 10, padding: "8px 12px", marginBottom: 8 }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: C.peach, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 3 }}>⚠️ Caution</div>
+          <div style={{ fontSize: 12, color: C.textSub }}>{caution}</div>
+        </div>
+      )}
+      {pearls && (
+        <div style={{ background: C.lavLight, borderRadius: 10, padding: "8px 12px" }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: C.lavender, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 3 }}>💎 Pharmacist Pearl</div>
+          <div style={{ fontSize: 12, color: C.textSub }}>{pearls}</div>
+        </div>
+      )}
+    </div>
+  );
+
+  // ── STAT BOX ──
+  const StatBox = ({ value, label, color = C.lavender, sub }) => (
+    <div style={{ background: C.white, borderRadius: 14, padding: "14px 12px", textAlign: "center", boxShadow: "var(--shadow-sm)", borderTop: `3px solid ${color}` }}>
+      <div style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 700, color, lineHeight: 1, marginBottom: 4 }}>{value}</div>
+      <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.2 }}>{label}</div>
+      {sub && <div style={{ fontSize: 10, color: C.textMuted, marginTop: 3 }}>{sub}</div>}
+    </div>
+  );
+
+  // ── INFO ROW ──
+  const InfoRow = ({ label, value, color = C.text }) => (
+    <div style={{ display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: `1px solid ${C.border}`, alignItems: "flex-start", gap: 12 }}>
+      <span style={{ fontSize: 12, color: C.textMuted, flexShrink: 0, maxWidth: "40%" }}>{label}</span>
+      <span style={{ fontSize: 12, color, fontWeight: 600, textAlign: "right" }}>{value}</span>
+    </div>
+  );
+
+  return (
+    <div>
+      {/* Source banner */}
+      <div style={{ background: "linear-gradient(135deg, #1e1b4b, #312e81)", borderRadius: 18, padding: "14px 18px", marginBottom: 16, display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ fontSize: 28 }}>📚</div>
+        <div>
+          <div style={{ fontSize: 10, fontWeight: 700, color: C.lavender, letterSpacing: 2, textTransform: "uppercase" }}>Evidence Base</div>
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.85)", lineHeight: 1.5 }}>
+            2023 International PCOS Guideline (GRADE) · NEJM · J Clin Endocrinol Metab · CMAJ · Endocrine Society
+          </div>
+        </div>
+      </div>
+
+      {/* Section tabs — scrollable */}
+      <div style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 4, marginBottom: 18, scrollbarWidth: "none" }}>
+        {sections.map(s => (
+          <button key={s.id} onClick={() => setActiveSection(s.id)} style={{
+            flexShrink: 0, padding: "8px 14px", borderRadius: 20, border: "none", cursor: "pointer",
+            background: activeSection === s.id ? C.lavender : C.bg2,
+            color: activeSection === s.id ? "#fff" : C.textSub,
+            fontWeight: activeSection === s.id ? 700 : 500, fontSize: 12,
+            display: "flex", alignItems: "center", gap: 5, transition: "all 0.18s",
+          }}>
+            <span>{s.icon}</span><span>{s.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* ── OVERVIEW ── */}
+      {activeSection === "overview" && (
+        <div className="stagger">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 10, marginBottom: 16 }}>
+            <StatBox value="~13%" label="Prevalence" color={C.lavender} sub="Reproductive-age women" />
+            <StatBox value="70%" label="Undiagnosed" color={C.peach} sub="Avg 2-yr delay to Dx" />
+            <StatBox value="70–80%" label="Insulin Resistant" color={C.amber} sub="Even lean phenotypes" />
+            <StatBox value="196" label="Countries" color={C.mint} sub="Use 2023 guideline" />
+          </div>
+
+          <Card style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%)", border: "none" }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: C.lavender, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Definition</div>
+            <div style={{ fontSize: 13.5, color: "rgba(255,255,255,0.9)", lineHeight: 1.7 }}>
+              PCOS is the most common endocrine disorder in reproductive-age women. It is a <strong style={{ color: C.lavender }}>heterogeneous, multisystem condition</strong> driven by hyperandrogenism and insulin resistance, with reproductive, metabolic, psychological, and cardiovascular sequelae spanning the entire lifespan.
+            </div>
+          </Card>
+
+          <ExpandCard id="pathophysiology" title="Pathophysiology" icon="⚙️" color={C.lavender} badge="Key mechanism for pharmacist counseling">
+            <div style={{ fontSize: 13, color: C.textSub, lineHeight: 1.7, marginBottom: 12 }}>
+              PCOS pathophysiology involves a <strong>self-reinforcing cycle</strong> of three interconnected axes:
+            </div>
+            {[
+              { title: "HPO Axis Dysregulation", icon: "🧠", color: C.lavender, body: "Abnormally increased LH pulse frequency from GnRH neurons → elevated LH:FSH ratio → excess ovarian androgen production. FSH-driven follicular maturation is impaired, leading to arrest of antral follicles (\"polycystic\" morphology) and anovulation." },
+              { title: "Insulin Resistance & Compensatory Hyperinsulinemia", icon: "🩸", color: C.amber, body: "Affects 70–80% of women with PCOS regardless of BMI. Hyperinsulinemia directly stimulates ovarian theca cells via IGF-1 receptors → more androgens. Simultaneously suppresses hepatic SHBG → ↑ free testosterone. This is the primary pharmacological target for metformin and GLP-1 RAs." },
+              { title: "Adrenal Hyperandrogenism", icon: "🫁", color: C.coral, body: "Up to 50% of PCOS cases have elevated DHEAS from adrenal origin. Exacerbated by chronic stress and HPA axis dysregulation — relevant to sleep and cortisol counseling." },
+              { title: "Adipose Dysfunction", icon: "🔄", color: C.sky, body: "Visceral adiposity amplifies IR through pro-inflammatory adipokines (↑TNF-α, IL-6, ↓adiponectin). Weight loss of 5–10% can meaningfully reduce androgen levels and restore ovulatory function by breaking this cycle." },
+            ].map((p, i) => (
+              <div key={i} style={{ display: "flex", gap: 12, background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8 }}>
+                <span style={{ fontSize: 22 }}>{p.icon}</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 13, color: p.color, marginBottom: 4 }}>{p.title}</div>
+                  <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{p.body}</div>
+                </div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="phenotypes" title="Clinical Phenotypes" icon="🧬" color={C.sky} badge="Rotterdam 2023 Criteria — 4 Phenotypes">
+            {[
+              { ph: "Phenotype A", label: "Classic Full", criteria: "HA + OD + PCOM", prevalence: "~60%", risk: "Highest metabolic risk", color: C.coral },
+              { ph: "Phenotype B", label: "Classic Non-PCOM", criteria: "HA + OD", prevalence: "~15%", risk: "High metabolic risk", color: C.amber },
+              { ph: "Phenotype C", label: "Ovulatory PCOS", criteria: "HA + PCOM", prevalence: "~15%", risk: "Lower metabolic risk", color: C.mint },
+              { ph: "Phenotype D", label: "Non-Androgenic", criteria: "OD + PCOM", prevalence: "~10%", risk: "Most disputed entity", color: C.sky },
+            ].map((p, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8, borderLeft: `3px solid ${p.color}` }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                  <div style={{ fontWeight: 700, fontSize: 13, color: p.color }}>{p.ph} — {p.label}</div>
+                  <Chip color={p.color}>{p.prevalence}</Chip>
+                </div>
+                <div style={{ fontSize: 12, color: C.textSub, marginBottom: 3 }}>Criteria: {p.criteria}</div>
+                <div style={{ fontSize: 11, color: C.textMuted }}>⚠️ {p.risk}</div>
+              </div>
+            ))}
+            <div style={{ fontSize: 11, color: C.textMuted, fontStyle: "italic", marginTop: 8 }}>HA = Hyperandrogenism · OD = Ovulatory Dysfunction · PCOM = Polycystic Ovary Morphology</div>
+          </ExpandCard>
+
+          <ExpandCard id="comorbidities" title="Long-Term Comorbidities" icon="⚕️" color={C.peach} badge="Critical for pharmacist counseling & monitoring">
+            {[
+              { label: "Type 2 Diabetes", risk: "4× risk vs. general population; IGT progresses in ~35%", icon: "🩸" },
+              { label: "Metabolic Syndrome", risk: "Prevalence 33–46%; ↑ with age and BMI", icon: "📈" },
+              { label: "Cardiovascular Disease", risk: "Elevated CVD risk — elevated clinical CVD confirmed in 2024 meta-analysis (JAHA 2024)", icon: "❤️" },
+              { label: "Endometrial Cancer", risk: "3× risk due to chronic anovulation and unopposed estrogen", icon: "🔴" },
+              { label: "OSA / Sleep Apnea", risk: "30× more prevalent than BMI-matched controls; often missed", icon: "😴" },
+              { label: "Anxiety & Depression", risk: "3–8× higher prevalence; screen at diagnosis and annually", icon: "🧠" },
+              { label: "Eating Disorders", risk: "Elevated risk of BED and bulimia; weight stigma is a driver", icon: "🚨" },
+            ].map((c, i) => (
+              <div key={i} style={{ display: "flex", gap: 12, padding: "9px 0", borderBottom: i < 6 ? `1px solid ${C.border}` : "none" }}>
+                <span style={{ fontSize: 18 }}>{c.icon}</span>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 13 }}>{c.label}</div>
+                  <div style={{ fontSize: 12, color: C.textSub }}>{c.risk}</div>
+                </div>
+              </div>
+            ))}
+          </ExpandCard>
+        </div>
+      )}
+
+      {/* ── DIAGNOSIS ── */}
+      {activeSection === "diagnosis" && (
+        <div className="stagger">
+          <Card style={{ background: "linear-gradient(135deg, #064e3b, #065f46)", border: "none" }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: C.mint, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>2023 Updated Rotterdam Criteria</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.9)", lineHeight: 1.7 }}>
+              ≥2 of 3 criteria, after exclusion of other causes. <strong style={{ color: C.mint }}>AMH now accepted as alternative to ultrasound in adults.</strong>
+            </div>
+          </Card>
+
+          <ExpandCard id="dx-criteria" title="Diagnostic Criteria" icon="📐" color={C.mint} badge="Rotterdam 2023 — updated evidence-based">
+            {[
+              { n: "1", title: "Hyperandrogenism (HA)", icon: "🔬", color: C.coral, content: [
+                "Clinical: Modified Ferriman-Gallwey score ≥4–6 (ethnicity-dependent). Also acne, androgenic alopecia.",
+                "Biochemical: Elevated total or free testosterone (preferred). DHEAS, androstenedione as adjuncts.",
+                "Note: Free testosterone is the most sensitive — often normal total T with elevated free fraction.",
+              ]},
+              { n: "2", title: "Ovulatory Dysfunction (OD)", icon: "🔄", color: C.amber, content: [
+                "Irregular cycles: <21 or >35 days (>3 yrs post-menarche).",
+                "First year post-menarche: irregular cycles are normal (do not diagnose PCOS).",
+                "1–3 yrs post-menarche: <21 or >45 days.",
+                "Biochemical anovulation: low luteal phase progesterone can confirm.",
+              ]},
+              { n: "3", title: "Polycystic Ovary Morphology (PCOM)", icon: "🖥️", color: C.sky, content: [
+                "Ultrasound: ≥20 follicles per ovary (2018→2023 updated threshold) OR ovarian volume >10 mL.",
+                "AMH (Adults only): Elevated AMH is now accepted as an alternative to ultrasound — threshold varies by assay.",
+                "NOT recommended in adolescents (low specificity in perimenarchal years).",
+              ]},
+            ].map((c, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+                <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: "50%", background: c.color, color: "#fff", fontSize: 12, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{c.n}</div>
+                  <div style={{ fontWeight: 700, fontSize: 13.5, color: c.color }}>{c.icon} {c.title}</div>
+                </div>
+                {c.content.map((line, j) => (
+                  <div key={j} style={{ display: "flex", gap: 8, marginBottom: 6 }}>
+                    <span style={{ color: c.color, fontSize: 10, marginTop: 3, flexShrink: 0 }}>▸</span>
+                    <span style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{line}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="dx-workup" title="Diagnostic Workup" icon="🧪" color={C.amber} badge="Recommended labs & exclusion panel">
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: C.amber, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 8 }}>Initial Labs</div>
+              {[
+                ["Free + Total Testosterone", "Biochemical HA confirmation; free T most sensitive"],
+                ["DHEAS", "Adrenal androgen source; ↑ suggests adrenal etiology"],
+                ["TSH", "Exclude thyroid dysfunction (common mimicker)"],
+                ["Prolactin", "Exclude hyperprolactinemia"],
+                ["17-OHP (morning, follicular)", "Exclude late-onset CAH (especially if elevated DHEAS)"],
+                ["Fasting glucose + insulin", "IR assessment; fasting insulin:glucose ratio"],
+                ["HbA1c / 2hr OGTT", "Preferred over fasting glucose for T2DM screening"],
+                ["Fasting lipid panel", "CVD risk stratification — dyslipidemia common"],
+                ["AMH", "Can substitute ultrasound in adults; also reflects ovarian reserve"],
+              ].map(([test, note], i) => (
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: `1px solid ${C.border}`, gap: 10 }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: C.text }}>{test}</span>
+                  <span style={{ fontSize: 11, color: C.textMuted, textAlign: "right", flex: 1 }}>{note}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: C.peachLight, borderRadius: 12, padding: "10px 14px" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: C.peach, marginBottom: 6 }}>⚠️ Exclude First</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>Thyroid disease · Hyperprolactinemia · Non-classic CAH (17-OHP) · Cushing's syndrome · Androgen-secreting tumors · Pregnancy</div>
+            </div>
+          </ExpandCard>
+
+          <ExpandCard id="dx-adolescent" title="Adolescent Diagnosis" icon="👧" color={C.sky} badge="Special considerations — stricter criteria">
+            <div style={{ background: C.skyLight, borderRadius: 12, padding: "12px 14px", marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: C.skyDark, fontWeight: 600, marginBottom: 6 }}>Key Difference from Adults</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>Both <strong>hyperandrogenism AND ovulatory dysfunction are required</strong> for adolescent diagnosis. Ultrasound and AMH are NOT recommended (poor specificity in perimenarchal years). Consider "at risk" labeling and reassess at 8 years post-menarche.</div>
+            </div>
+            <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.7 }}>
+              Irregular cycles are normal for the first 1–2 years after menarche. Avoid over-diagnosing. If criteria are not fully met, manage symptoms and reassess.
+            </div>
+          </ExpandCard>
+        </div>
+      )}
+
+      {/* ── PHARMACOLOGY ── */}
+      {activeSection === "pharm" && (
+        <div className="stagger">
+          <div style={{ background: C.lavLight, borderRadius: 16, padding: "12px 16px", marginBottom: 16 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: C.lavender, marginBottom: 4 }}>2023 Guideline First-Line Hierarchy</div>
+            <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.65 }}>
+              <strong>Cycle regulation + HA:</strong> COCP (first-line) → Anti-androgens (add-on)<br />
+              <strong>Metabolic:</strong> Lifestyle → Metformin (esp. obesity/IR) → GLP-1 RA (emerging)<br />
+              <strong>Infertility:</strong> Letrozole (1st) → Clomiphene ± Metformin (2nd) → Gonadotropins / IVF (3rd)
+            </div>
+          </div>
+
+          <ExpandCard id="cocp" title="Combined Oral Contraceptives (COCP)" icon="💊" color={C.peach} badge="First-line — menstrual regulation & hyperandrogenism">
+            <EvidencePill level="Strong" source="2023 Int'l Guideline · GRADE" />
+            <DrugCard
+              name="COCP (general class)"
+              class="Estrogen + Progestin"
+              dose="Low-dose EE preferred (20–30 mcg EE). No specific preparation recommended — choose based on tolerability. Cyclic or continuous."
+              indication="First-line for menstrual irregularity, hirsutism, acne, endometrial protection. NOT for metabolic features alone."
+              monitoring="BP at baseline and follow-up. Lipid panel annually. VTE risk stratification before initiation."
+              caution="VTE risk: progestin type matters — prefer norgestimate, desogestrel (lower androgenicity). Avoid in hypercoagulable states, migraines with aura, smoking >35 yrs."
+              pearls="SHBG increases 4–6× with EE — this directly reduces free testosterone. Drospirenone has anti-androgenic properties but also ↑VTE risk. Counsel on 3-month minimum trial before assessing hirsutism response (hair cycle ~3–6 months)."
+              color={C.peach}
+              evidence={{ level: "Strong", source: "GRADE A" }}
+            />
+          </ExpandCard>
+
+          <ExpandCard id="metformin" title="Metformin" icon="🔵" color={C.mint} badge="First-line for metabolic features — insulin sensitizer">
+            <EvidencePill level="Strong" source="2023 Guideline · Meta-analysis J Clin Endocrinol Metab 2023" />
+            <DrugCard
+              name="Metformin"
+              class="Biguanide — Insulin Sensitizer"
+              dose="Start 500 mg daily with meals. Titrate by 500 mg/week to target 1500–2000 mg/day (IR-extended release preferred for GI tolerability). Max 2550 mg/day."
+              indication="Metabolic features: IR, impaired glucose tolerance, T2DM prevention, obesity with metabolic risk. Greater efficacy than inositol (GRADE). Adjunct to COCP in high metabolic risk (BMI ≥30, T2DM risk factors, ethnic high-risk groups)."
+              monitoring="Renal function (eGFR) before initiation and annually — hold if eGFR <30. B12 levels annually with long-term use (metformin depletes B12). LFTs at baseline. HbA1c/fasting glucose."
+              caution="Hold 48h before contrast dye procedures. Not routinely recommended in pregnancy with PCOS (may reduce preterm birth but benefit/risk unclear per 2023 guideline). GI side effects common — XR formulation significantly improves tolerability."
+              pearls="Mechanism in PCOS: activates AMPK → ↓hepatic glucose production, ↑peripheral insulin sensitivity → ↓compensatory hyperinsulinemia → ↓ovarian androgen synthesis. Can restore ovulatory function in ~30-50% of anovulatory patients as a secondary effect. B12 deficiency is under-recognized — check annually."
+              color={C.mint}
+              evidence={{ level: "Strong", source: "GRADE A" }}
+            />
+          </ExpandCard>
+
+          <ExpandCard id="antiandrogens" title="Anti-Androgens" icon="🚫" color={C.coral} badge="Add-on for hirsutism — always with contraception">
+            <EvidencePill level="Moderate" source="2023 Guideline — conditional recommendation" />
+            {[
+              {
+                name: "Spironolactone",
+                class: "Aldosterone antagonist / Anti-androgen",
+                dose: "25–200 mg/day (typically 50–100 mg). Clinical response seen at 3–6 months.",
+                indication: "Hirsutism and acne refractory to COCP alone. Often combined with COCP.",
+                monitoring: "Serum potassium (risk of hyperkalemia — especially with ACEI/ARB, NSAIDs). BP (can lower BP). Renal function. Menstrual changes.",
+                caution: "ABSOLUTELY contraindicated in pregnancy — teratogenic (feminization of male fetus). Must use effective contraception. Avoid with potassium-sparing diuretics or K+ supplements.",
+                pearls: "Mechanism: blocks AR at hair follicle and sebaceous gland; also inhibits 5α-reductase. Dual benefit when combined with COCP: COCP ↑SHBG, spironolactone blocks free T effects. Most cost-effective anti-androgen option.",
+                color: C.coral,
+              },
+              {
+                name: "Finasteride",
+                class: "5α-Reductase Inhibitor (Type 2)",
+                dose: "2.5–5 mg/day.",
+                indication: "Hirsutism when spironolactone not tolerated. Less data in PCOS than spiro.",
+                monitoring: "LFTs. Teratogenicity counseling mandatory.",
+                caution: "Category X in pregnancy. Pregnant healthcare providers should avoid handling crushed tablets. Limited data vs spironolactone in PCOS.",
+                pearls: "Blocks conversion of T → DHT (the potent androgen driving follicular miniaturization). Better evidence for androgenic alopecia than hirsutism in PCOS.",
+                color: C.coral,
+              },
+            ].map((d, i) => (
+              <DrugCard key={i} {...d} evidence={{ level: "Moderate", source: "GRADE B" }} />
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="glp1" title="GLP-1 Receptor Agonists" icon="💉" color={C.sky} badge="Emerging — obesity + IR + androgen reduction">
+            <EvidencePill level="Emerging" source="PMC 2024 · 13 RCTs registered as of Nov 2024" />
+            <div style={{ background: C.skyLight, borderRadius: 12, padding: "12px 14px", marginBottom: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: C.skyDark, marginBottom: 6 }}>2023 Guideline Position</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>GLP-1 RAs can be considered as anti-obesity treatment in PCOS <em>based on general population guidelines</em> — not yet a PCOS-specific recommendation. Use with active lifestyle intervention and effective contraception.</div>
+            </div>
+            <DrugCard
+              name="Liraglutide / Semaglutide"
+              class="GLP-1 Receptor Agonist"
+              dose="Liraglutide: 0.6 mg SC daily → titrate to 3 mg/day. Semaglutide: 0.25 mg SC weekly → titrate to 2.4 mg/week (Wegovy) or oral 3–14 mg/day (Rybelsus)."
+              indication="Obesity (BMI ≥30 or ≥27 with comorbidities) with PCOS. Significant IR, T2DM. Evidence for ↓testosterone, ↓FAI, ↑SHBG as secondary benefits."
+              monitoring="HR (↑HR 2–5 bpm). Pancreatitis symptoms. Thyroid (avoid with personal/family hx MTC or MEN2). Nausea/vomiting — common, dose-limiting. Renal function."
+              caution="Not studied in pregnancy for PCOS — use effective contraception. Avoid in personal/family hx of thyroid C-cell tumors or MEN2. Discontinue ≥2 months before conception (semaglutide)."
+              pearls="Dual therapy of GLP-1 RA + metformin is superior to metformin monotherapy for hyperandrogenemia (Xing et al., Reprod Sci 2023). Exenatide/dapagliflozin combination showed superior clinical and metabolic benefits vs either alone. GLP-1 RAs may also reduce LH pulse amplitude — a direct mechanistic benefit beyond weight loss."
+              color={C.sky}
+              evidence={{ level: "Emerging", source: "Phase II/III RCTs" }}
+            />
+          </ExpandCard>
+
+          <ExpandCard id="inositol" title="Inositol" icon="🌿" color={C.amber} badge="OTC supplement — limited clinical benefit per guideline">
+            <EvidencePill level="Conditional" source="2023 Guideline — conditional, not preferred" />
+            <div style={{ background: C.amberLight, borderRadius: 12, padding: "12px 14px", marginBottom: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: C.amberDark, marginBottom: 6 }}>Guideline Position (2023)</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>
+                <strong>Metformin has greater efficacy than inositol.</strong> Inositol offers limited clinical benefits in PCOS — marginal improvements in BMI and metabolic markers but no clear benefit on ovulation, hirsutism, or weight. May be considered based on individual preference given low harm profile.
+              </div>
+            </div>
+            <DrugCard
+              name="Myo-Inositol ± D-Chiro-Inositol"
+              class="Vitamin B complex analog — Insulin sensitizer"
+              dose="Myo-inositol: 2–4 g/day. Ratio 40:1 myo:d-chiro most studied. Available OTC."
+              indication="Patient preference when metformin not tolerated or declined. Mild metabolic improvement (↓BMI ~0.45 kg/m²). May improve oocyte quality in ART (limited data)."
+              monitoring="Minimal safety concerns. Monitor clinical response at 3–6 months."
+              caution="No serious harms identified. Inferior to metformin for metabolic outcomes. Lack of standardization in products/doses. Not recommended as first-line."
+              pearls="Second messenger in FSH and insulin signaling. Physiologic rationale exists but clinical benefit underwhelms the mechanism. SOGC 2025: 'can be considered based on individual preferences' but metformin preferred. Cost may favor inositol in some patients."
+              color={C.amber}
+              evidence={{ level: "Conditional", source: "GRADE C" }}
+            />
+          </ExpandCard>
+
+          <ExpandCard id="fertility" title="Ovulation Induction" icon="🥚" color={C.lavender} badge="Infertility management — tiered approach">
+            <EvidencePill level="Strong" source="2023 Guideline · NEJM Legro 2014" />
+            {[
+              { line: "1st Line", drug: "Letrozole", note: "Aromatase inhibitor. 2.5–7.5 mg CD3–7. Superior live birth rates vs clomiphene (NEJM 2014, Legro RS). Lower multiple pregnancy risk. Now unambiguously preferred over clomiphene per 2023 guideline.", color: C.mint },
+              { line: "1st/2nd Line", drug: "Clomiphene ± Metformin", note: "Clomiphene 50–150 mg CD3–7. Adding metformin improves ovulation and live birth rates in clomiphene-resistant patients. Anti-estrogenic endometrial effects limit use to ≤6 cycles.", color: C.amber },
+              { line: "2nd Line", drug: "Gonadotropins", note: "Low-dose step-up protocol preferred to minimize OHSS risk. Requires intensive ultrasound monitoring. Higher multiple pregnancy risk.", color: C.coral },
+              { line: "3rd Line", drug: "IVF ± IVM", note: "In vitro maturation (IVM) avoids OHSS risk in PCOS — immature oocytes matured ex vivo. Indicated when 1st/2nd line fails or other infertility factors present.", color: C.sky },
+            ].map((t, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8, borderLeft: `3px solid ${t.color}` }}>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 6 }}>
+                  <Chip color={t.color}>{t.line}</Chip>
+                  <span style={{ fontWeight: 700, fontSize: 13, color: C.text }}>{t.drug}</span>
+                </div>
+                <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{t.note}</div>
+              </div>
+            ))}
+          </ExpandCard>
+        </div>
+      )}
+
+      {/* ── NON-PHARM ── */}
+      {activeSection === "nonpharm" && (
+        <div className="stagger">
+          <Card style={{ background: "linear-gradient(135deg, #064e3b, #065f46)", border: "none" }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: C.mint, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Guideline Priority Statement</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.9)", lineHeight: 1.7 }}>
+              <strong style={{ color: C.mint }}>Lifestyle intervention is first-line for all women with PCOS regardless of weight.</strong> No specific diet or exercise regimen is superior — adherence is the strongest predictor of benefit. Weight bias must be minimized at every clinical encounter.
+            </div>
+          </Card>
+
+          <ExpandCard id="exercise" title="Exercise & Physical Activity" icon="🏋️" color={C.mint} badge="Strong evidence — insulin sensitivity, androgens, mood">
+            <EvidencePill level="Strong" source="2023 Guideline · Ann Intern Med 2024 meta-analysis" />
+            {[
+              { title: "Resistance Training (Priority)", color: C.mint, content: "Shown to be most effective for improving insulin sensitivity in PCOS specifically. Increases glucose transporter (GLUT4) expression in muscle. Recommended 2–3× per week, 8–12 compound movements. Even modest strength gains (10–15%) significantly reduce HOMA-IR." },
+              { title: "Aerobic Exercise", color: C.sky, content: "150 min/week moderate intensity or 75 min vigorous. Improves VO₂max, reduces visceral adiposity, ↓CRP. Combined aerobic + resistance is superior to either alone for metabolic outcomes in PCOS (Ann Intern Med 2024)." },
+              { title: "HIIT", color: C.coral, content: "High-intensity interval training shows superior improvements in IR and reproductive outcomes vs moderate-intensity continuous training in several RCTs. 20–30 min sessions, 3×/week may be more time-efficient." },
+              { title: "Weight Target", color: C.amber, content: "5–10% weight loss restores ovulatory function in 55–100% of anovulatory women with PCOS. 0.5 kg/week target is considered optimal per Polish obesity guidelines referenced in 2023 Guideline." },
+            ].map((e, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: e.color, marginBottom: 6 }}>{e.title}</div>
+                <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.65 }}>{e.content}</div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="diet" title="Nutritional Interventions" icon="🥗" color={C.amber} badge="No single diet superior — adherence is the key variable">
+            <EvidencePill level="Moderate" source="Scragg et al. Ann Intern Med 2024 — systematic review 30 RCTs" />
+            <div style={{ background: C.amberLight, borderRadius: 12, padding: "12px 14px", marginBottom: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: C.amberDark, marginBottom: 4 }}>Key Finding (Ann Intern Med 2024 SR)</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>Weight loss interventions (regardless of diet composition) significantly reduced testosterone, improved menstrual regularity, and lowered HOMA-IR. The effect was primarily mediated by weight loss, not macronutrient composition.</div>
+            </div>
+            {[
+              { diet: "Low GI / Low Glycemic Load", evidence: "Most studied. Reduces insulin area under the curve. Reduces androgen levels as secondary benefit via ↓hyperinsulinemia. Practical and sustainable.", rec: "Preferred starting point" },
+              { diet: "Mediterranean Diet", evidence: "Anti-inflammatory. ↓CRP, ↓IL-6. Improves lipid profile. High adherence in studies. Associated with ↓metabolic syndrome risk.", rec: "Strong overall evidence" },
+              { diet: "DASH Diet", evidence: "↓Systolic BP ~6 mmHg. Reduces IR markers. Applicable to PCOS with hypertension or cardiometabolic risk.", rec: "For CVD risk patients" },
+              { diet: "Caloric Restriction", evidence: "Any hypocaloric diet produces metabolic benefit when weight is lost. 500–750 kcal/day deficit is typical recommendation.", rec: "Universal benefit" },
+              { diet: "High-Protein Diet", evidence: "Some data for satiety and preservation of lean mass during weight loss. No PCOS-specific advantage over low-GI.", rec: "Adjunct option" },
+            ].map((d, i) => (
+              <div key={i} style={{ padding: "10px 0", borderBottom: i < 4 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                  <span style={{ fontWeight: 700, fontSize: 13 }}>{d.diet}</span>
+                  <Chip color={C.amber}>{d.rec}</Chip>
+                </div>
+                <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.55 }}>{d.evidence}</div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="sleep" title="Sleep Optimization" icon="😴" color={C.sky} badge="Often overlooked — directly worsens IR and androgens">
+            <EvidencePill level="Moderate" source="2023 Guideline — screen for OSA" />
+            <div style={{ background: C.skyLight, borderRadius: 12, padding: "12px 14px", marginBottom: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: C.skyDark, marginBottom: 4 }}>OSA in PCOS: 30× More Prevalent</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>Obstructive sleep apnea is dramatically underdiagnosed in PCOS. OSA independently worsens insulin resistance, raises cortisol, and disrupts LH pulsatility. Screen with STOP-BANG or Epworth. Even mild sleep restriction (6 vs 8 hrs) increases fasting insulin ~30% in healthy subjects.</div>
+            </div>
+            {[
+              "7–9 hours target sleep per night — guideline-supported",
+              "Treat OSA with CPAP if confirmed: reduces IR markers and CRP independently of weight",
+              "Consistent sleep/wake timing — circadian rhythm directly regulates GnRH and LH pulse",
+              "Screen for restless leg syndrome (iron deficiency common in PCOS with heavy cycles)",
+              "Limit blue light 1–2 hrs before bed — suppresses melatonin, delays sleep onset",
+            ].map((tip, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: i < 4 ? `1px solid ${C.border}` : "none" }}>
+                <span style={{ color: C.sky, fontSize: 14, flexShrink: 0 }}>✓</span>
+                <span style={{ fontSize: 12, color: C.textSub, lineHeight: 1.55 }}>{tip}</span>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="mentalhealth" title="Mental Health Management" icon="🧠" color={C.lavender} badge="Screen at Dx and annually — 3–8× elevated risk">
+            <EvidencePill level="Strong" source="2023 Guideline — explicit recommendation" />
+            {[
+              { condition: "Anxiety", prevalence: "~34% (vs ~12% general population)", tool: "GAD-7 or PHQ-4", color: C.lavender },
+              { condition: "Depression", prevalence: "~28% (vs ~8%)", tool: "PHQ-9 at diagnosis; repeat with life events", color: C.peach },
+              { condition: "Eating Disorders (BED/Bulimia)", prevalence: "↑↑ — weight stigma is key driver", tool: "EDE-Q or SCOFF screening", color: C.coral },
+              { condition: "ADHD / Executive Dysfunction", prevalence: "Emerging data — possible hormonal link", tool: "Clinical assessment", color: C.amber },
+            ].map((m, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                  <span style={{ fontWeight: 700, fontSize: 13, color: m.color }}>{m.condition}</span>
+                  <Chip color={m.color}>{m.tool}</Chip>
+                </div>
+                <div style={{ fontSize: 12, color: C.textSub }}>{m.prevalence}</div>
+              </div>
+            ))}
+            <div style={{ background: C.lavLight, borderRadius: 12, padding: "12px 14px", marginTop: 8 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: C.lavender, marginBottom: 6 }}>Pharmacist Role</div>
+              <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>When dispensing medications for PCOS, routinely ask about mood, sleep, and stress. SSRI/SNRI interactions with COCP and spironolactone are clinically relevant. Sertraline/escitalopram are first-line and have minimal CYP interactions with PCOS medications.</div>
+            </div>
+          </ExpandCard>
+        </div>
+      )}
+
+      {/* ── PHARMACIST PEARLS ── */}
+      {activeSection === "pearls" && (
+        <div className="stagger">
+          {[
+            {
+              id: "pearl1", title: "The B12 Blind Spot", icon: "💊", color: C.mint,
+              content: "Long-term metformin depletes vitamin B12 via competitive inhibition of ileal absorption. Prevalence of B12 deficiency in metformin users: ~10–30%. Clinically significant: B12 deficiency causes peripheral neuropathy and megaloblastic anemia — often misattributed to PCOS or its sequelae. Monitor annually. Supplement 1000 mcg/day PO if deficient or borderline.",
+              badge: "Monitoring Pearl"
+            },
+            {
+              id: "pearl2", title: "Free Testosterone Over Total", icon: "🧪", color: C.lavender,
+              content: "Total testosterone is often within 'normal' lab range in PCOS. Free testosterone (calculated or equilibrium dialysis) is more sensitive and clinically meaningful. SHBG is suppressed by insulin — so even with modest total T, the free fraction can be significantly elevated. Always request free T or calculate using SHBG + total T when evaluating HA.",
+              badge: "Lab Interpretation Pearl"
+            },
+            {
+              id: "pearl3", title: "COCP Timing & Hirsutism", icon: "⏱️", color: C.peach,
+              content: "Patients often discontinue COCP after 4–6 weeks due to 'no improvement' in hirsutism. The hair growth cycle is 3–6 months. COCP reduces new terminal hair production but existing terminal hairs must complete their cycle and fall out. Counsel patients explicitly: 6 months minimum for hirsutism response assessment. Earlier endpoints (acne, cycle regulation) respond in 1–3 cycles.",
+              badge: "Counseling Pearl"
+            },
+            {
+              id: "pearl4", title: "Spironolactone Hyperkalemia Risk", icon: "⚡", color: C.coral,
+              content: "Spironolactone hyperkalemia risk is often overstated in otherwise healthy young women with PCOS but becomes significant with concurrent ACEi/ARB, NSAIDs, potassium supplements, or renal impairment. In clinical practice: check K+ at baseline, 1 month after initiation, and annually. Educate on avoiding high-K+ supplementation. Hyperkalemia rarely clinically significant at doses ≤100 mg in young women with normal renal function.",
+              badge: "Safety Pearl"
+            },
+            {
+              id: "pearl5", title: "Letrozole Off-Label Status (US)", icon: "📋", color: C.amber,
+              content: "Letrozole remains off-label in the US for ovulation induction despite being first-line in the 2023 international guideline and demonstrating superior live birth rates vs clomiphene in the landmark NEJM 2014 trial (Legro RS et al., 27.5% vs 19.1% live birth rate). Counsel patients on off-label use proactively. Document clinical rationale. Most insurance covers it when documented for infertility.",
+              badge: "Regulatory Pearl"
+            },
+            {
+              id: "pearl6", title: "GLP-1 RA and Contraception", icon: "🚫", color: C.sky,
+              content: "GLP-1 RAs slow gastric emptying — this may reduce oral contraceptive absorption, particularly at peak drug concentration. Limited clinical data but theoreticially significant with combined COCP use. Counsel to take COCP at least 1 hour before semaglutide/liraglutide dose. Semaglutide should be discontinued ≥2 months before conception attempt due to unknown fetal risk (long half-life).",
+              badge: "Drug Interaction Pearl"
+            },
+            {
+              id: "pearl7", title: "Insulin Resistance Without Obesity", icon: "⚖️", color: C.lavender,
+              content: "70–80% of women with PCOS have insulin resistance — this includes lean phenotypes (BMI <25). IR in lean PCOS is driven by intrinsic ovarian and hepatic insulin resistance, not excess adiposity. Do not withhold metformin or insulin sensitizer therapy purely on the basis of 'normal' BMI. A fasting insulin:glucose ratio <7 or HOMA-IR >2.5 supports IR in this context.",
+              badge: "Clinical Decision Pearl"
+            },
+            {
+              id: "pearl8", title: "Endometrial Protection Imperative", icon: "🔴", color: C.coral,
+              content: "Chronic anovulation = unopposed estrogen = endometrial hyperplasia risk → 3× ↑endometrial cancer risk. Any patient with PCOS and irregular cycles not using COCP should be counseled on endometrial protection. Progestin withdrawal every 1–3 months (MPA 10 mg × 10–14 days) if COCP is refused or contraindicated. This is a pharmacist-level safety communication opportunity at every dispensing encounter.",
+              badge: "Critical Safety Pearl"
+            },
+          ].map(p => (
+            <ExpandCard key={p.id} id={p.id} title={p.title} icon={p.icon} color={p.color} badge={p.badge}>
+              <div style={{ fontSize: 13, color: C.textSub, lineHeight: 1.75 }}>{p.content}</div>
+            </ExpandCard>
+          ))}
+        </div>
+      )}
+
+      {/* ── HOLISTIC ── */}
+      {activeSection === "holistic" && (
+        <div className="stagger">
+          <Card style={{ background: "linear-gradient(135deg, #14532d, #166534)", border: "none" }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: C.mint, letterSpacing: 2, textTransform: "uppercase", marginBottom: 6 }}>Holistic Philosophy</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.9)", lineHeight: 1.7 }}>
+              PCOS is a <strong style={{ color: C.mint }}>lifelong condition</strong>, not an acute illness. The 2023 guideline explicitly calls for <strong style={{ color: C.mint }}>individualized care, self-empowerment, and elimination of weight stigma</strong> as core management principles. The most effective interventions address the body, mind, sleep, and social determinants simultaneously.
+            </div>
+          </Card>
+
+          <ExpandCard id="cortisol" title="Cortisol & Stress Management" icon="🧘" color={C.lavender} badge="HPA axis dysregulation amplifies hyperandrogenism">
+            <div style={{ fontSize: 13, color: C.textSub, lineHeight: 1.7, marginBottom: 12 }}>
+              Chronic psychological stress → ↑cortisol → stimulates adrenal androgen production (DHEAS) → amplifies PCOS symptoms. HPA axis dysregulation is an underappreciated driver of the adrenal hyperandrogenism phenotype.
+            </div>
+            {[
+              { title: "Mindfulness-Based Stress Reduction (MBSR)", body: "8-week MBSR programs shown to ↓cortisol, ↓anxiety, improve quality of life in women with PCOS. Meta-analysis demonstrates significant reductions in perceived stress scores." },
+              { title: "Cognitive Behavioral Therapy (CBT)", body: "First-line for anxiety and depression. Specifically effective for body image disturbance and disordered eating patterns common in PCOS. Telehealth CBT accessible and evidence-supported." },
+              { title: "Diaphragmatic Breathing / HRV Training", body: "Activates parasympathetic nervous system. Biofeedback devices (eg, Heartmath) shown to reduce HPA axis reactivity. Daily 10-minute practice." },
+              { title: "Limit Over-Exercise", body: "Paradox: excessive cardio/caloric restriction raises cortisol. This can worsen PCOS symptoms and suppress ovulatory function. Moderate-intensity resistance training with adequate recovery is safer." },
+            ].map((item, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 12, padding: "12px 14px", marginBottom: 8 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: C.lavender, marginBottom: 4 }}>{item.title}</div>
+                <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{item.body}</div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="supplements" title="Evidence-Based Supplements" icon="🌿" color={C.mint} badge="Adjunctive only — individualize based on labs">
+            {[
+              { name: "Vitamin D", dose: "2000–4000 IU/day", evidence: "Deficiency prevalent in PCOS (50–75%). Low Vit D associated with ↑IR, ↑testosterone. Supplementation improves HOMA-IR and menstrual regularity in deficient patients. Check 25-OH-D before supplementing.", color: C.amber, strength: "Moderate" },
+              { name: "Omega-3 (EPA/DHA)", dose: "2–4 g/day fish oil", evidence: "Reduces triglycerides (primary effect), lowers androgens modestly, reduces CRP. Beneficial for PCOS-associated dyslipidemia. Choose purified fish oil with third-party testing.", color: C.sky, strength: "Moderate" },
+              { name: "Magnesium", dose: "200–400 mg elemental/night", evidence: "Deficiency common in IR states. Magnesium is a cofactor for >300 enzymatic reactions including insulin signaling. Glycinate form preferred (better absorbed, less laxative). May improve sleep quality as secondary benefit.", color: C.mint, strength: "Moderate" },
+              { name: "NAC (N-Acetyl Cysteine)", dose: "600 mg TID", evidence: "Antioxidant. Several RCTs show improvements in insulin sensitivity and ovulation rates comparable to metformin. Improves GSH levels and reduces oxidative stress — relevant given high oxidative stress burden in PCOS.", color: C.lavender, strength: "Emerging" },
+              { name: "Myo-Inositol", dose: "2–4 g/day (40:1 myo:DCI ratio)", evidence: "See Pharmacology section. Per 2023 guideline: metformin preferred. Individual consideration acceptable given safety profile. Limited benefit on clinical endpoints.", color: C.amber, strength: "Conditional" },
+              { name: "Zinc", dose: "25–50 mg/day (with food)", evidence: "5α-reductase inhibitor activity. Small RCTs show ↓hirsutism scores, ↓testosterone. Depleted by COCP (counsel patients on COCPs to consider supplementation).", color: C.coral, strength: "Emerging" },
+            ].map((s, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 13.5, color: s.color }}>{s.name}</div>
+                    <div style={{ fontSize: 11, color: C.textMuted }}>Dose: {s.dose}</div>
+                  </div>
+                  <EvidencePill level={s.strength} />
+                </div>
+                <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{s.evidence}</div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="lifespan" title="Lifespan Considerations" icon="🗓️" color={C.coral} badge="PCOS evolves — different priorities at each stage">
+            {[
+              { stage: "Adolescence", icon: "🌱", color: C.mint, points: ["Diagnosis requires stricter criteria — avoid labeling without meeting both HA + OD", "Prioritize lifestyle without weight-focused language (eating disorder risk is high)", "Address acne and menstrual irregularity as primary complaint drivers", "Screen for depression and anxiety at every visit"] },
+              { stage: "Reproductive Years", icon: "🌸", color: C.peach, points: ["Fertility planning should be discussed proactively — letrozole first-line if anovulatory", "Endometrial protection mandatory if anovulatory and not on COCP", "Preconception: optimize weight, folic acid 400–800 mcg/day, screen for T2DM", "Pregnancy: higher risk preterm birth, GDM, PIH — specialist monitoring recommended"] },
+              { stage: "Perimenopause", icon: "🌻", color: C.amber, points: ["Androgen levels may naturally decline but IR and metabolic risk persist or worsen", "Cardiovascular risk escalates — continue annual lipid/BP/glucose screening", "COCP can be continued until menopause if no contraindications", "Menopause does not 'cure' PCOS metabolically — long-term vigilance required"] },
+              { stage: "Post-Menopause", icon: "🍂", color: C.lavender, points: ["Metabolic syndrome, T2DM, CVD risk remain elevated", "Endometrial cancer risk attenuates once anovulatory cycles cease", "Continue metabolic monitoring: lipids, HbA1c, BP annually", "HRT considerations: individualize — not contraindicated in PCOS per se"] },
+            ].map((ls, i) => (
+              <div key={i} style={{ background: C.bg, borderRadius: 14, padding: "14px 16px", marginBottom: 10, borderLeft: `3px solid ${ls.color}` }}>
+                <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: 22 }}>{ls.icon}</span>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: ls.color }}>{ls.stage}</div>
+                </div>
+                {ls.points.map((pt, j) => (
+                  <div key={j} style={{ display: "flex", gap: 8, marginBottom: 6 }}>
+                    <span style={{ color: ls.color, flexShrink: 0 }}>•</span>
+                    <span style={{ fontSize: 12, color: C.textSub, lineHeight: 1.55 }}>{pt}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </ExpandCard>
+
+          <ExpandCard id="dailylife" title="Daily Life Pearls for Patients" icon="☀️" color={C.amber} badge="Practical, evidence-anchored everyday guidance">
+            {[
+              { icon: "🕗", title: "Eat within a 10–12 hour window", body: "Time-restricted eating reduces postprandial insulin spikes. Avoid eating within 2 hours of sleep. Breakfast high in protein (30g+) blunts the morning LH surge response." },
+              { icon: "🚶", title: "Walk 10 min after every meal", body: "Post-meal walking reduces postprandial glucose by 12–22% (multiple RCTs). This is the single simplest insulin sensitizing behavior outside of formal exercise." },
+              { icon: "💧", title: "Prioritize hydration", body: "Mild dehydration (1–2%) raises cortisol and impairs insulin signaling. Target 2–3L water/day. Avoid high-sugar drinks entirely — eliminate liquid calories first." },
+              { icon: "🏋️", title: "Lift weights 2–3× per week", body: "Resistance training is the most effective exercise modality for PCOS-specific IR improvement. Each pound of muscle gained ↑basal metabolic rate and insulin clearance." },
+              { icon: "😴", title: "Protect sleep ruthlessly", body: "One night of 4-hour sleep raises testosterone and cortisol in women, worsens IR, and disrupts LH pulsatility. Sleep is not optional management — it is a core treatment." },
+              { icon: "🧘", title: "5–10 min daily stress practice", body: "Daily HRV biofeedback, box breathing, or meditation reduces morning cortisol measurably within 4–6 weeks. Stack onto an existing habit (morning coffee, evening wind-down)." },
+              { icon: "📉", title: "Track, don't obsess", body: "Logging food for 2–4 weeks builds awareness without long-term restriction. Obsessive tracking increases cortisol and risk of disordered eating. Use data to inform, not control." },
+              { icon: "🩺", title: "Annual metabolic check", body: "HbA1c, fasting lipids, blood pressure every year — non-negotiable. PCOS is a lifelong CVD and T2DM risk factor. Many patients forget this after reproductive years." },
+            ].map((t, i) => (
+              <div key={i} style={{ display: "flex", gap: 14, padding: "12px 0", borderBottom: i < 7 ? `1px solid ${C.border}` : "none" }}>
+                <span style={{ fontSize: 24, flexShrink: 0 }}>{t.icon}</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 4 }}>{t.title}</div>
+                  <div style={{ fontSize: 12, color: C.textSub, lineHeight: 1.6 }}>{t.body}</div>
+                </div>
+              </div>
+            ))}
+          </ExpandCard>
+
+          {/* Citation footer */}
+          <div style={{ background: C.bg2, borderRadius: 16, padding: 16, marginTop: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 10 }}>Key References</div>
+            {[
+              "Teede HJ et al. Recommendations from the 2023 International Evidence-based Guideline for the Assessment and Management of PCOS. J Clin Endocrinol Metab. 2023;108(10):2447–2469.",
+              "Legro RS et al. Letrozole versus Clomiphene for Infertility in PCOS. N Engl J Med. 2014;371(2):119–129.",
+              "Scragg J et al. Effect of Weight Loss Interventions on PCOS Symptomatic Burden. Ann Intern Med. 2024;177(12):1664–74.",
+              "Tay CT et al. 2023 PCOS Guideline Update: CVD in PCOS. J Am Heart Assoc. 2024;13(16):e033572.",
+              "Forslund M et al. 2023 International Evidence-Based PCOS Guideline — Nordic Perspective. Acta Obstet Gynecol Scand. 2024.",
+              "SOGC Position Statement: Inositol for PCOS Management. Feb 2025.",
+            ].map((ref, i) => (
+              <div key={i} style={{ fontSize: 10.5, color: C.textMuted, lineHeight: 1.6, marginBottom: 6, paddingLeft: 12, borderLeft: `2px solid ${C.lavender}` }}>{ref}</div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── APP ROOT ────────────────────────────────────────────────────────
+function App() {
+  const [page, setPage] = useState("program");
+  const [toastMsg, setToastMsg] = useState("");
+  const toastTimer = useRef(null);
+
+  const showToast = msg => {
+    setToastMsg(msg);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToastMsg(""), 2500);
+  };
+
+  const tabs = [
+    { id: "program",   label: "Program",   icon: "📋" },
+    { id: "tracker",   label: "Tracker",   icon: "🏋️" },
+    { id: "nutrition", label: "Nutrition", icon: "🥗" },
+    { id: "dashboard", label: "Dashboard", icon: "📊" },
+    { id: "pcos",      label: "PCOS",      icon: "🩺" },
+  ];
+
+  return (
+    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "var(--font-body)" }}>
+      <GlobalStyles />
+      <Sidebar page={page} setPage={setPage} tabs={tabs} />
+      <TabBar page={page} setPage={setPage} tabs={tabs} />
+
+      {/* Main content */}
+      <div className="page-content" style={{ maxWidth: 680, margin: "0 auto", padding: "24px 16px 80px" }}>
+        {page === "program" && <ProgramPage />}
+        {page !== "program" && (
+          <>
+            <PageHeader page={page} />
+            {page === "tracker"   && <TrackerPage showToast={showToast} />}
+            {page === "nutrition" && <NutritionPage showToast={showToast} />}
+            {page === "dashboard" && <DashboardPage showToast={showToast} />}
+            {page === "pcos"      && <PCOSPage />}
+          </>
+        )}
+      </div>
+
+      <Toast msg={toastMsg} />
+    </div>
+  );
+}
+
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(React.createElement(App));
+    // Hide loading screen once React has rendered
+    setTimeout(() => {
+      const el = document.getElementById('loading');
+      if (el) { el.style.opacity = '0'; setTimeout(() => el.remove(), 400); }
+    }, 100);
+  </script>
+
+  <script>
+    // iOS PWA install hint - iOS Safari doesn't show install prompt automatically
+    window.addEventListener('load', () => {
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isInStandalone = window.navigator.standalone === true;
+      const dismissed = localStorage.getItem('pwa-hint-dismissed');
+      
+      if (isIOS && !isInStandalone && !dismissed) {
+        const banner = document.createElement('div');
+        banner.id = 'ios-hint';
+        banner.innerHTML = `
+          <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+            background:#1C1C1E;color:#fff;padding:12px 18px;border-radius:14px;
+            font-family:-apple-system,sans-serif;font-size:13px;z-index:99999;
+            box-shadow:0 4px 20px rgba(0,0,0,0.4);display:flex;align-items:center;gap:10px;
+            max-width:300px;text-align:center;line-height:1.4;">
+            <span style="font-size:22px">📲</span>
+            <span>Tap <strong>Share</strong> then <strong>"Add to Home Screen"</strong> to install this app</span>
+            <button onclick="document.getElementById('ios-hint').remove();localStorage.setItem('pwa-hint-dismissed','1')" 
+              style="background:none;border:none;color:#9CA3AF;font-size:20px;cursor:pointer;padding:0;line-height:1">×</button>
+          </div>`;
+        setTimeout(() => document.body.appendChild(banner), 2500);
+      }
+    });
+
+    // Android/Chrome: listen for install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show install button if you want — for now auto-trigger after 3s
+      setTimeout(() => {
+        if (deferredPrompt) deferredPrompt.prompt();
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
